@@ -82,6 +82,7 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 .fork.a{border-left-color:var(--trek)} .fork.b{border-left-color:var(--city)}
 .note{margin-top:26px;color:var(--muted);font-size:12px;border-top:1px solid var(--line2);padding-top:12px}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
@@ -172,6 +173,10 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 </div>
 </div>
 
+<h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">The loop on a map</h2>
+<p class="sub" style="margin-bottom:12px">North to far south and back. Solid line = ground (train / trek), dashed = flight. Numbers follow the trip order.</p>
+<div id="map" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
+
 <div class="legend">
   <span><i class="dot" style="background:var(--city)"></i>City</span>
   <span><i class="dot" style="background:var(--party)"></i>Party</span>
@@ -214,5 +219,44 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 
 <p class="note">Fixed anchor: Labyrinth Oct 10&ndash;12 (Minakami Hodaigi). Oct 21 buffer is load-bearing for Yakushima weather risk. Day-by-day, budget and sources in the Google Sheet.</p>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  var map = L.map('map', {scrollWheelZoom:false}).setView([33.6,134.8], 5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:18}).addTo(map);
+
+  var stops = [
+    {n:1, name:'Tokyo',            sub:'Oct 8&ndash;9 arrival + Oct 23&ndash;25 finale', ll:[35.68,139.76], c:'#3f6fb0'},
+    {n:2, name:'Minakami (Gunma)', sub:'Oct 10&ndash;12 Labyrinth festival + rafting',   ll:[36.80,139.00], c:'#a83c8f'},
+    {n:3, name:'Kumano Kodo',      sub:'Oct 14&ndash;16 Nakahechi onsen trek',           ll:[33.84,135.77], c:'#2f8a4e'},
+    {n:4, name:'Kagoshima',        sub:'Gateway + Kaimon-dake volcano (Oct 22)',         ll:[31.60,130.56], c:'#d97b2b'},
+    {n:5, name:'Yakushima',        sub:'Oct 19&ndash;20 Miyanoura-dake traverse',        ll:[30.43,130.50], c:'#166534'}
+  ];
+  function icon(n,c){
+    return L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13],
+      html:'<div style="background:'+c+';color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 13px sans-serif;border:2px solid #fff">'+n+'</div>'});
+  }
+  var pts=[];
+  stops.forEach(function(s){
+    L.marker(s.ll,{icon:icon(s.n,s.c)}).addTo(map).bindPopup('<b>'+s.n+'. '+s.name+'</b><br>'+s.sub);
+    pts.push(s.ll);
+  });
+
+  var ground = {color:'#333', weight:3, opacity:.85};
+  var air    = {color:'#3f6fb0', weight:2, opacity:.85, dashArray:'6,7'};
+  var legs = [
+    {a:[35.68,139.76], b:[36.80,139.00], m:ground}, // Tokyo -> Minakami (train)
+    {a:[36.80,139.00], b:[33.84,135.77], m:ground}, // Minakami -> Kumano (train, via Tokyo/Osaka)
+    {a:[33.84,135.77], b:[31.60,130.56], m:air},    // Kumano -> Kagoshima (fly, via Osaka)
+    {a:[31.60,130.56], b:[30.43,130.50], m:air},    // Kagoshima -> Yakushima (fly/ferry)
+    {a:[30.43,130.50], b:[31.60,130.56], m:air},    // back to Kagoshima
+    {a:[31.60,130.56], b:[35.68,139.76], m:air}     // Kagoshima -> Tokyo (fly)
+  ];
+  legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
+
+  map.fitBounds(L.latLngBounds(pts).pad(0.18));
+})();
+</script>
 </body>
 </html>

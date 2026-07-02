@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>Japan 2026 — festival + rough hiking loop</name>
+  <description>4 pax. Oct 8-25 2026. Numbered in trip order. Solid = ground, dashed(blue) = flight.</description>
+
+  <Style id="ground"><LineStyle><color>ff333333</color><width>4</width></LineStyle></Style>
+  <Style id="air"><LineStyle><color>ffb06f3f</color><width>3</width></LineStyle></Style>
+  <Style id="stop"><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+
+  <Placemark><name>1. Tokyo</name><styleUrl>#stop</styleUrl>
+    <description>Oct 8-9 arrival (2 easing-in days) + Oct 23-25 finale</description>
+    <Point><coordinates>139.7600,35.6800,0</coordinates></Point></Placemark>
+  <Placemark><name>2. Minakami (Gunma)</name><styleUrl>#stop</styleUrl>
+    <description>Oct 10-12 Labyrinth festival + rafting/canyoning + Tanigawa-dake</description>
+    <Point><coordinates>139.0000,36.8000,0</coordinates></Point></Placemark>
+  <Placemark><name>3. Kumano Kodo (Takijiri-Hongu)</name><styleUrl>#stop</styleUrl>
+    <description>Oct 14-16 Nakahechi onsen-to-onsen trek</description>
+    <Point><coordinates>135.7700,33.8400,0</coordinates></Point></Placemark>
+  <Placemark><name>4. Kagoshima</name><styleUrl>#stop</styleUrl>
+    <description>Gateway to Yakushima + Kaimon-dake volcano day (Oct 22)</description>
+    <Point><coordinates>130.5600,31.6000,0</coordinates></Point></Placemark>
+  <Placemark><name>5. Yakushima</name><styleUrl>#stop</styleUrl>
+    <description>Oct 19-20 Shiratani -> Jomon Sugi -> Miyanoura-dake traverse</description>
+    <Point><coordinates>130.5000,30.4300,0</coordinates></Point></Placemark>
+
+  <Placemark><name>Ground: Tokyo - Minakami - Kumano (train)</name><styleUrl>#ground</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      139.7600,35.6800,0 139.0000,36.8000,0 139.7600,35.6800,0 135.7700,33.8400,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Air: Kumano - Kagoshima - Yakushima - Tokyo (flights)</name><styleUrl>#air</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      135.7700,33.8400,0 130.5600,31.6000,0 130.5000,30.4300,0 130.5600,31.6000,0 139.7600,35.6800,0
+    </coordinates></LineString></Placemark>
+
+</Document>
+</kml>
