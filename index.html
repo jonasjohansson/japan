@@ -81,6 +81,13 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
   margin-bottom:11px;font-size:12.5px}
 .fork.a{border-left-color:var(--trek)} .fork.b{border-left-color:var(--city)}
 .note{margin-top:26px;color:var(--muted);font-size:12px;border-top:1px solid var(--line2);padding-top:12px}
+.brow{display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid var(--line2);font-size:13px}
+.bcat{flex:0 0 170px}
+.bbar{flex:1;height:14px;background:#f2f2f2;border-radius:2px;overflow:hidden}
+.bbar i{display:block;height:100%;background:#3f6fb0}
+.bamt{flex:0 0 62px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.brow.tot{border-top:2px solid var(--line);border-bottom:none;font-weight:700;margin-top:2px}
+.brow.tot .bamt{color:#166534}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -182,7 +189,7 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 <div id="map" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
 
 <h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">Eri's Route 1 on the map</h2>
-<p class="sub" style="margin-bottom:12px">Her original plan, ~10 stops in a long loop: Tokyo &rarr; Minakami &rarr; fly to Yakushima &rarr; back up through Kyushu and the San'yo coast &rarr; Kansai &rarr; Tokyo. More ground, more travel days.</p>
+<p class="sub" style="margin-bottom:12px">Her original plan as drawn: Tokyo &rarr; Minakami &rarr; fly to Yakushima &rarr; Amakusa &rarr; Fukuoka &rarr; Hiroshima &rarr; Naoshima &rarr; Osaka/Kyoto &rarr; Tokyo. A long loop, more ground and travel days than our reshape.</p>
 <div id="map-eri" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
 
 <div class="legend">
@@ -224,6 +231,19 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
     </div>
   </div>
 </div>
+
+<h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">Rough budget, once you've landed</h2>
+<p class="sub" style="margin-bottom:12px">Per person, in-Japan only (excludes international flights). Twin-share lodging, ~16 days.</p>
+<div style="max-width:560px">
+  <div class="brow"><span class="bcat">Getting around</span><span class="bbar"><i style="width:100%"></i></span><span class="bamt">&euro;740</span></div>
+  <div class="brow"><span class="bcat">Lodging (~14 nights)</span><span class="bbar"><i style="width:80%"></i></span><span class="bamt">&euro;590</span></div>
+  <div class="brow"><span class="bcat">Food &amp; drink</span><span class="bbar"><i style="width:64%"></i></span><span class="bamt">&euro;470</span></div>
+  <div class="brow"><span class="bcat">Activities</span><span class="bbar"><i style="width:28%"></i></span><span class="bamt">&euro;205</span></div>
+  <div class="brow"><span class="bcat">Festival ticket</span><span class="bbar"><i style="width:22%"></i></span><span class="bamt">&euro;160</span></div>
+  <div class="brow"><span class="bcat">Gear, fees, insurance</span><span class="bbar"><i style="width:20%"></i></span><span class="bamt">&euro;150</span></div>
+  <div class="brow tot"><span class="bcat">In-Japan total / person</span><span class="bbar"></span><span class="bamt">&euro;2,315</span></div>
+</div>
+<p class="sub" style="margin-top:8px">Group of 4 &asymp; &euro;9,250 &middot; about &euro;145 / person / day. With international flights, ~&euro;3,200 / person all-in. Full breakdown in the Google Sheet.</p>
 
 <p class="note">Fixed anchor: Labyrinth Oct 10&ndash;12 (Minakami Hodaigi). Oct 21 buffer is load-bearing for Yakushima weather risk. Day-by-day, budget and sources in the Google Sheet.</p>
 
@@ -273,16 +293,15 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
     {attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:18}).addTo(map);
 
   var stops = [
-    {n:1,  name:'Tokyo',        sub:'Reunite (Oct 9)',              ll:[35.68,139.76],  c:'#3f6fb0'},
-    {n:2,  name:'Minakami',     sub:'Labyrinth festival (Oct 10&ndash;12)', ll:[36.80,139.00],  c:'#a83c8f'},
-    {n:3,  name:'Yakushima',    sub:'Decompress + hike (fly down)', ll:[30.43,130.50],  c:'#2f8a4e'},
-    {n:4,  name:'Kagoshima',    sub:'Kyushu',                       ll:[31.60,130.56],  c:'#c29a3a'},
-    {n:5,  name:'Amakusa',      sub:'Islands',                      ll:[32.45,130.19],  c:'#c29a3a'},
-    {n:6,  name:'Nagasaki',     sub:'or Fukuoka',                   ll:[32.75,129.87],  c:'#c29a3a'},
-    {n:7,  name:'Hiroshima',    sub:'Peace Park + Miyajima',        ll:[34.39,132.46],  c:'#c29a3a'},
-    {n:8,  name:'Naoshima',     sub:'Art island (train + ferry)',   ll:[34.46,133.99],  c:'#c29a3a'},
-    {n:9,  name:'Osaka / Kyoto',sub:'Kansai',                       ll:[34.69,135.50],  c:'#c29a3a'},
-    {n:10, name:'Tokyo',        sub:'Finale (Oct 22&ndash;25)',     ll:[35.60,139.90],  c:'#3f6fb0'}
+    {n:1, name:'Tokyo',         sub:'Arrive / reunite',                  ll:[35.68,139.76], c:'#3f6fb0'},
+    {n:2, name:'Minakami',      sub:'Labyrinth festival (Oct 10&ndash;12)', ll:[36.80,139.00], c:'#a83c8f'},
+    {n:3, name:'Yakushima',     sub:'3 days, fly down (air) + hike',      ll:[30.36,130.53], c:'#2f8a4e'},
+    {n:4, name:'Amakusa',       sub:'Amakusa / Fukuoka, 3 days',         ll:[32.45,130.19], c:'#c29a3a'},
+    {n:5, name:'Fukuoka',       sub:'Ferry from Amakusa',                ll:[33.59,130.40], c:'#c29a3a'},
+    {n:6, name:'Hiroshima',     sub:'3 days (train from Fukuoka)',       ll:[34.39,132.46], c:'#c29a3a'},
+    {n:7, name:'Naoshima',      sub:'Art island (train)',                ll:[34.46,133.99], c:'#c29a3a'},
+    {n:8, name:'Osaka / Kyoto', sub:'Train or ferry',                    ll:[34.69,135.50], c:'#c29a3a'},
+    {n:9, name:'Tokyo',         sub:'Finale (bullet train)',             ll:[35.60,139.90], c:'#3f6fb0'}
   ];
   function icon(n,c){
     return L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13],
@@ -297,15 +316,14 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
   var ground = {color:'#333', weight:3, opacity:.85};
   var air    = {color:'#3f6fb0', weight:2, opacity:.85, dashArray:'6,7'};
   var legs = [
-    {a:[35.68,139.76], b:[36.80,139.00], m:ground}, // Tokyo -> Minakami
-    {a:[36.80,139.00], b:[30.43,130.50], m:air},    // fly to Yakushima
-    {a:[30.43,130.50], b:[31.60,130.56], m:air},    // Yakushima -> Kagoshima
-    {a:[31.60,130.56], b:[32.45,130.19], m:ground}, // -> Amakusa
-    {a:[32.45,130.19], b:[32.75,129.87], m:ground}, // -> Nagasaki
-    {a:[32.75,129.87], b:[34.39,132.46], m:ground}, // -> Hiroshima
-    {a:[34.39,132.46], b:[34.46,133.99], m:ground}, // -> Naoshima
-    {a:[34.46,133.99], b:[34.69,135.50], m:ground}, // -> Osaka/Kyoto
-    {a:[34.69,135.50], b:[35.60,139.90], m:ground}  // -> Tokyo (bullet train)
+    {a:[35.68,139.76], b:[36.80,139.00], m:ground}, // Tokyo -> Minakami (train)
+    {a:[36.80,139.00], b:[30.36,130.53], m:air},    // fly down to Yakushima (air)
+    {a:[30.36,130.53], b:[32.45,130.19], m:air},    // Yakushima -> Amakusa (air/train/ferry)
+    {a:[32.45,130.19], b:[33.59,130.40], m:ground}, // Amakusa -> Fukuoka (ferry)
+    {a:[33.59,130.40], b:[34.39,132.46], m:ground}, // Fukuoka -> Hiroshima (train)
+    {a:[34.39,132.46], b:[34.46,133.99], m:ground}, // Hiroshima -> Naoshima (train)
+    {a:[34.46,133.99], b:[34.69,135.50], m:ground}, // Naoshima -> Osaka/Kyoto (train/ferry)
+    {a:[34.69,135.50], b:[35.60,139.90], m:ground}  // Osaka -> Tokyo (bullet train)
   ];
   legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
 
