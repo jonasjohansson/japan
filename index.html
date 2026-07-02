@@ -88,6 +88,9 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 .bamt{flex:0 0 62px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .brow.tot{border-top:2px solid var(--line);border-bottom:none;font-weight:700;margin-top:2px}
 .brow.tot .bamt{color:#166534}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
+.stat{border:1px solid var(--line);border-radius:3px;padding:4px 11px;font-size:12px;color:var(--muted)}
+.stat b{font-size:15px;color:var(--ink);margin-right:3px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -187,10 +190,22 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 <h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">The loop on a map</h2>
 <p class="sub" style="margin-bottom:12px">North to far south and back. Solid line = ground (train / trek), dashed = flight. Numbers follow the trip order.</p>
 <div id="map" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
+<div class="stats">
+  <div class="stat"><b>5</b> stops</div>
+  <div class="stat"><b>4</b> travel days</div>
+  <div class="stat"><b>2</b> multi-day treks</div>
+  <div class="stat"><b>~5</b> days in Tokyo</div>
+</div>
 
 <h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">Eri's Route 1 on the map</h2>
 <p class="sub" style="margin-bottom:12px">Her original plan as drawn: Tokyo &rarr; Minakami &rarr; fly to Yakushima &rarr; Amakusa &rarr; Fukuoka &rarr; Hiroshima &rarr; Naoshima &rarr; Osaka/Kyoto &rarr; Tokyo. A long loop, more ground and travel days than our reshape.</p>
 <div id="map-eri" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
+<div class="stats">
+  <div class="stat"><b>9</b> stops</div>
+  <div class="stat"><b>~5</b> travel days</div>
+  <div class="stat"><b>1</b> hike (Yakushima)</div>
+  <div class="stat"><b>~4</b> days in Tokyo</div>
+</div>
 
 <div class="legend">
   <span><i class="dot" style="background:var(--city)"></i>City</span>
