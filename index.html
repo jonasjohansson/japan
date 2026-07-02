@@ -181,6 +181,10 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 <p class="sub" style="margin-bottom:12px">North to far south and back. Solid line = ground (train / trek), dashed = flight. Numbers follow the trip order.</p>
 <div id="map" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
 
+<h2 style="font-size:16px;margin:36px 0 3px;font-weight:700">Eri's Route 1 on the map</h2>
+<p class="sub" style="margin-bottom:12px">Her original plan, ~10 stops in a long loop: Tokyo &rarr; Minakami &rarr; fly to Yakushima &rarr; back up through Kyushu and the San'yo coast &rarr; Kansai &rarr; Tokyo. More ground, more travel days.</p>
+<div id="map-eri" style="height:460px;border:1px solid var(--line);border-radius:4px"></div>
+
 <div class="legend">
   <span><i class="dot" style="background:var(--city)"></i>City</span>
   <span><i class="dot" style="background:var(--party)"></i>Party</span>
@@ -256,6 +260,52 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
     {a:[31.60,130.56], b:[30.43,130.50], m:air},    // Kagoshima -> Yakushima (fly/ferry)
     {a:[30.43,130.50], b:[31.60,130.56], m:air},    // back to Kagoshima
     {a:[31.60,130.56], b:[35.68,139.76], m:air}     // Kagoshima -> Tokyo (fly)
+  ];
+  legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
+
+  map.fitBounds(L.latLngBounds(pts).pad(0.18));
+})();
+
+// Eri's Route 1
+(function(){
+  var map = L.map('map-eri', {scrollWheelZoom:false}).setView([33.6,134.8], 5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:18}).addTo(map);
+
+  var stops = [
+    {n:1,  name:'Tokyo',        sub:'Reunite (Oct 9)',              ll:[35.68,139.76],  c:'#3f6fb0'},
+    {n:2,  name:'Minakami',     sub:'Labyrinth festival (Oct 10&ndash;12)', ll:[36.80,139.00],  c:'#a83c8f'},
+    {n:3,  name:'Yakushima',    sub:'Decompress + hike (fly down)', ll:[30.43,130.50],  c:'#2f8a4e'},
+    {n:4,  name:'Kagoshima',    sub:'Kyushu',                       ll:[31.60,130.56],  c:'#c29a3a'},
+    {n:5,  name:'Amakusa',      sub:'Islands',                      ll:[32.45,130.19],  c:'#c29a3a'},
+    {n:6,  name:'Nagasaki',     sub:'or Fukuoka',                   ll:[32.75,129.87],  c:'#c29a3a'},
+    {n:7,  name:'Hiroshima',    sub:'Peace Park + Miyajima',        ll:[34.39,132.46],  c:'#c29a3a'},
+    {n:8,  name:'Naoshima',     sub:'Art island (train + ferry)',   ll:[34.46,133.99],  c:'#c29a3a'},
+    {n:9,  name:'Osaka / Kyoto',sub:'Kansai',                       ll:[34.69,135.50],  c:'#c29a3a'},
+    {n:10, name:'Tokyo',        sub:'Finale (Oct 22&ndash;25)',     ll:[35.60,139.90],  c:'#3f6fb0'}
+  ];
+  function icon(n,c){
+    return L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13],
+      html:'<div style="background:'+c+';color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 12px sans-serif;border:2px solid #fff">'+n+'</div>'});
+  }
+  var pts=[];
+  stops.forEach(function(s){
+    L.marker(s.ll,{icon:icon(s.n,s.c)}).addTo(map).bindPopup('<b>'+s.n+'. '+s.name+'</b><br>'+s.sub);
+    pts.push(s.ll);
+  });
+
+  var ground = {color:'#333', weight:3, opacity:.85};
+  var air    = {color:'#3f6fb0', weight:2, opacity:.85, dashArray:'6,7'};
+  var legs = [
+    {a:[35.68,139.76], b:[36.80,139.00], m:ground}, // Tokyo -> Minakami
+    {a:[36.80,139.00], b:[30.43,130.50], m:air},    // fly to Yakushima
+    {a:[30.43,130.50], b:[31.60,130.56], m:air},    // Yakushima -> Kagoshima
+    {a:[31.60,130.56], b:[32.45,130.19], m:ground}, // -> Amakusa
+    {a:[32.45,130.19], b:[32.75,129.87], m:ground}, // -> Nagasaki
+    {a:[32.75,129.87], b:[34.39,132.46], m:ground}, // -> Hiroshima
+    {a:[34.39,132.46], b:[34.46,133.99], m:ground}, // -> Naoshima
+    {a:[34.46,133.99], b:[34.69,135.50], m:ground}, // -> Osaka/Kyoto
+    {a:[34.69,135.50], b:[35.60,139.90], m:ground}  // -> Tokyo (bullet train)
   ];
   legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
 
