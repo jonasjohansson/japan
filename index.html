@@ -9,7 +9,7 @@
    Japan 2026 — global visual system
    Owns: :root tokens, dark mode, base elements, table.days, .tag,
          .sub, .scroll, .note, .blist/.bitem/.bwhen/.btxt, media query.
-   Does NOT own: .grid .track .seg .rowlabel .date .prow .pbar .pdiv
+   Does NOT own: .grid .track .seg .segbr .rowlabel .date .prow .pn
          .daysbg .sechead .legend .stats #map .brow .bcat .bbar .bamt
    Paste this block first, then slot component CSS after it.
    ═══════════════════════════════════════════════════════════════════ */
@@ -384,7 +384,7 @@ table.days tr.anchor td.d{color:var(--ink)}
 
 /* Row names stay pinned while the chart scrolls sideways. The grid is 1306px,
    so it overflows even a 1280px viewport — this is not only a phone fix.
-   z-index 10 clears every in-chart z-index (the highest is .pdiv at 3).
+   z-index 10 clears every in-chart z-index.
    The -20px box-shadow bleeds the opaque background left over .scroll's own
    padding, which sticky's inset would otherwise leave as a see-through gutter
    at <=640px where .scroll gains padding:0 var(--sp-4). */
@@ -419,7 +419,7 @@ table.days tr.anchor td.d{color:var(--ink)}
 .sechead-sp{padding-top:16px}
 
 /* one shared placement rule: --s = day index from Oct 6, --n = span in days */
-.seg,.leg,.stop,.who,.lock,.pickmark,.pdiv{position:absolute;
+.seg,.leg{position:absolute;
   left:calc(var(--s) * (100% / 17) + var(--seggap));
   width:calc(var(--n) * (100% / 17) - 2 * var(--seggap))}
 
@@ -431,8 +431,8 @@ table.days tr.anchor td.d{color:var(--ink)}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ── where we sleep ───────────────────────────────────────────────────────── */
-.track{position:relative;height:52px;border-bottom:1px solid var(--line2)}
-.seg{top:6px;height:40px;color:var(--on-accent);padding:5px 7px;line-height:1.15;
+.track{position:relative;height:58px;border-bottom:1px solid var(--line2)}
+.seg{top:6px;height:46px;color:var(--on-accent);padding:5px 7px;line-height:1.15;
   overflow:hidden;display:flex;flex-direction:column;justify-content:center;border-radius:2px;
   /* one hairline per night boundary, so the nights are countable. Tiled at
      1/--n of the block's own width, since a column is no longer a fixed px. */
@@ -443,48 +443,31 @@ table.days tr.anchor td.d{color:var(--ink)}
   white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .seg span{font-size:var(--fs-micro);opacity:.92;
   white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
-.seg.n{padding:5px 4px}
+.seg.n{padding:5px 2px;text-align:center}
 .seg.n b{font-size:var(--fs-micro);letter-spacing:-.2px}
-.seg.n span{font-size:9px}
-/* hatched bottom edge = not all four are in this bed */
-.seg.part::after{content:'';position:absolute;left:0;right:0;bottom:0;height:6px;
-  background-image:var(--hatch);opacity:.85}
+.seg.n span{font-size:8px;letter-spacing:-.2px}
+/* the map's stop number, so the band and the map name the same places */
+.seg i{font-style:normal;font-weight:700;opacity:.7;margin-right:3px}
+/* where one of us sleeps elsewhere the cell splits: group above, branch below */
+.seg.split{padding-bottom:16px}
+.segbr{position:absolute;left:0;right:0;bottom:0;height:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--branch-ink);
+  white-space:nowrap;overflow:hidden;padding:0 3px}
+.segbr.eri{background:var(--eri)} .segbr.jonas{background:var(--jonas)}
 
 .city{background-color:var(--city)} .party{background-color:var(--party)}
 .trek{background-color:var(--trek)} .culture{background-color:var(--culture)}
 .travel{background-color:var(--travel);color:var(--travel-ink)}
 
-/* ── who sleeps apart ─────────────────────────────────────────────────────── */
-.apart{position:relative;height:32px;border-bottom:1px solid var(--line2)}
-.who{top:6px;height:20px;border-radius:2px;color:var(--on-accent);font-size:var(--fs-micro);
-  display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 7px;
-  white-space:nowrap;overflow:hidden}
-.who b{font-weight:700}
-.who em{font-style:normal;opacity:.72;font-size:9px}
-.who.n{padding:0 4px;letter-spacing:-.2px}   /* one-day chip: no room for the date */
-.who.eri{background:var(--eri)} .who.jonas{background:var(--jonas)}
-.who.eri,.who.jonas{color:var(--branch-ink)}
-
-/* ── daytime stops: outlined, because there is no bed here ────────────────── */
-.stops{position:relative;height:64px;border-bottom:1px solid var(--line2)}
-.stop{top:18px;height:27px;background:var(--bg);border:1px solid var(--c);color:var(--c);
-  border-radius:2px;padding:2px 4px;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center}
-.stop b{font-size:9px;font-weight:700;line-height:1.15;
-  white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
-.stop span{font-size:9px;line-height:1.15;color:var(--muted);
-  white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
-.stop.s-city{--c:var(--city)} .stop.s-trek{--c:var(--trek)}
-.stop.s-cult{--c:var(--culture)} .stop.s-opt{--c:var(--muted);border-style:dashed}
-/* Oct 17 is a fork: two stacked options with 'or' between them */
-.stop.pick{height:25px}
-.stop.pick.a{top:0} .stop.pick.b{top:36px}
-.pickmark{top:25px;height:11px;font-size:9px;line-height:11px;letter-spacing:.6px;
-  text-transform:uppercase;color:var(--muted);text-align:center}
-
-/* ── weight of the day ────────────────────────────────────────────────────── */
-.load{display:grid;grid-template-columns:repeat(17,1fr);height:62px;
+/* ── the day itself: where you go, and how heavy the going is ─────────────── */
+.load{display:grid;grid-template-columns:repeat(17,minmax(0,1fr));height:86px;
   border-bottom:1px solid var(--line2)}
+.lcell em{font-style:normal;font-weight:700;line-height:1.15;letter-spacing:-.2px;
+  color:var(--culture);margin-bottom:auto;padding-top:4px;font-size:8px;
+  max-width:100%;overflow:hidden;text-align:center}
+.lcell em i{font-style:normal;opacity:.65;margin-right:2px}
+.lcell em.pick{color:var(--muted);font-weight:400;margin-bottom:0;padding-top:1px}
 .lcell{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
   padding:0 3px 4px;overflow:hidden;text-align:center}
 .lcell b{font-size:9px;font-weight:700;line-height:1.2;
@@ -497,33 +480,23 @@ table.days tr.anchor td.d{color:var(--ink)}
 .bar.foot{background:var(--trek)}     /* on foot, not in a seat */
 .bar.hot{background:var(--flag)}      /* the one genuinely brutal day */
 
-/* ── locked-in anchors ────────────────────────────────────────────────────── */
-.fixed{position:relative;height:32px;border-bottom:1px solid var(--line2)}
-.lock{top:7px;height:18px;background:var(--bg);border:1px solid var(--ink);color:var(--ink);
-  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
-  display:flex;align-items:center;justify-content:center;padding:0 3px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* ── who is in Japan ──────────────────────────────────────────────────────── */
-.prow{position:relative;height:30px;border-bottom:1px solid var(--line2)}
-.pbar{position:absolute;top:6px;height:18px;background:var(--person);color:var(--on-accent);
-  border-radius:2px;
-  left:calc(var(--s) * (100% / 17));width:calc((var(--e) - var(--s)) * (100% / 17));
-  display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 9px;
-  font-size:var(--fs-micro);white-space:nowrap;overflow:hidden}
-.pbar em{font-style:normal;opacity:.72}
-/* keep the arrival/departure labels above a .pdiv that overlaps the bar end */
-.pbar span{position:relative;z-index:4}
-/* hatch where a bar runs off the edge of the 17-day window */
-.pbar.oR::after,.pbar.oLR::before,.pbar.oLR::after{content:'';position:absolute;
-  top:0;bottom:0;width:30px;background-image:var(--hatch);opacity:.5;pointer-events:none}
-.pbar.oR::after,.pbar.oLR::after{right:0}
-.pbar.oLR::before{left:0}
-.pdiv{top:3px;height:24px;border-radius:2px;background:var(--city);color:var(--on-accent);
-  font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;
-  z-index:3;box-shadow:0 0 0 2px var(--bg);white-space:nowrap;overflow:hidden}
-.pdiv.eri{background:var(--eri)} .pdiv.jonas{background:var(--jonas)}
-.pdiv.eri,.pdiv.jonas{color:var(--branch-ink)}
+/* ── where each of us sleeps, night by night ──────────────────────────────── */
+/* One cell per night, coloured by that person's bed. Four matching rows mean
+   we are together; a row breaking colour is someone off on their own. */
+.prow{display:grid;grid-template-columns:repeat(17,minmax(0,1fr));height:24px;
+  border-bottom:1px solid var(--line2)}
+.pn{font-style:normal;margin:3px 1px;border-radius:2px;background:var(--c,transparent);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-size:8px;font-weight:700;color:var(--on-accent);
+  font-variant-numeric:tabular-nums;letter-spacing:-.2px}
+.pn.city{--c:var(--city)} .pn.party{--c:var(--party)}
+.pn.trek{--c:var(--trek)} .pn.culture{--c:var(--culture)}
+.pn.travel{--c:var(--travel);color:var(--travel-ink)}
+.pn.eri{--c:var(--eri)} .pn.jonas{--c:var(--jonas)}
+.pn.eri,.pn.jonas{color:var(--branch-ink)}
+.pn.gone{background:none}
+.pn.out{background:none;color:var(--muted)}            /* the day they fly out */
+.pn.on{background-color:var(--line2);background-image:var(--hatch);color:var(--muted)}  /* runs off the edge */
 
 /* ── legend + stats ───────────────────────────────────────────────────────── */
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:20px 0 0;
@@ -531,9 +504,7 @@ table.days tr.anchor td.d{color:var(--ink)}
 .legend span{display:flex;align-items:center;gap:6px}
 .dot{width:11px;height:11px;border-radius:2px;display:inline-block;flex:none}
 .dot.eri{background:var(--eri)} .dot.jonas{background:var(--jonas)}
-.dot.hollow{background:var(--bg);border:1px solid var(--muted)}
-.dot.hollow.dash{border-style:dashed}
-.dot.hatch{background-color:var(--culture);background-image:var(--hatch)}
+.dot.hatch{background-color:var(--line2);background-image:var(--hatch)}
 .stats{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
 .stat{border:1px solid var(--line);border-radius:3px;padding:4px 11px;
   font-size:var(--fs-small);color:var(--muted)}
@@ -737,100 +708,56 @@ table.days tr.anchor td.d{color:var(--ink)}
   </div>
 
   <!-- ── where the bed is ───────────────────────────────────────────────── -->
-  <div class="rowlabel">Where we sleep<small>every division is one night</small></div>
+  <div class="rowlabel">Where we sleep<small>numbered as on the map</small></div>
   <div class="track daysbg" style="grid-column:2 / span 17">
-    <div class="seg travel n"     style="--s:0;--n:1"><b>In the air</b><span>3 routes</span></div>
-    <div class="seg city"         style="--s:1;--n:3"><b>Tokyo</b><span>Graphy Shibuya · 3 nights</span></div>
-    <div class="seg party"        style="--s:4;--n:2"><b>Labyrinth</b><span>Lodge Sekigahara</span></div>
-    <div class="seg trek"         style="--s:6;--n:3"><b>Yakushima</b><span>Jomon Sugi + moss forest</span></div>
-    <div class="seg culture n"    style="--s:9;--n:1"><b>Kagoshima</b><span>Sakurajima</span></div>
-    <div class="seg culture n"    style="--s:10;--n:1"><b>Fukuoka</b><span>Hakata</span></div>
-    <div class="seg culture part" style="--s:11;--n:2"><b>Okayama</b><span>base for Naoshima</span></div>
-    <div class="seg culture part" style="--s:13;--n:1"><b>Kyoto</b><span>one night</span></div>
-    <div class="seg city n"       style="--s:14;--n:1"><b>Tokyo</b><span>all four again</span></div>
-    <div class="seg city n part"  style="--s:15;--n:1"><b>Tokyo</b><span>Eva + Nate</span></div>
-    <div class="seg travel n"     style="--s:16;--n:1"><b>In Japan</b><span>still here</span></div>
-  </div>
-
-  <!-- ── the two people who sleep somewhere else ────────────────────────── -->
-  <div class="rowlabel">Sleeping apart<small>not in that bed</small></div>
-  <div class="apart daysbg" style="grid-column:2 / span 17">
-    <div class="who eri"   style="--s:11;--n:2"><span><b>Eri</b> → Ise</span><em>17–18</em></div>
-    <div class="who jonas n" style="--s:13;--n:1"><span><b>Jonas</b> Tokyo</span></div>
-  </div>
-
-  <!-- ── stops with no bed, including the Oct 17 pick-one ───────────────── -->
-  <div class="rowlabel">Daytime stops<small>no bed here — and the 17th is one or the other</small></div>
-  <div class="stops daysbg" style="grid-column:2 / span 17">
-    <div class="stop s-city" style="--s:2;--n:1"><b>Gear shops</b><span>Jimbocho</span></div>
-    <div class="stop s-trek" style="--s:7;--n:1"><b>Jomon Sugi</b><span>Arakawa</span></div>
-    <div class="stop s-trek" style="--s:8;--n:1"><b>Shiratani</b><span>moss forest</span></div>
-    <div class="stop s-cult" style="--s:9;--n:1"><b>Sakurajima</b><span>by ferry</span></div>
-    <div class="stop s-cult" style="--s:10;--n:1"><b>Kumamoto</b><span>midday only</span></div>
-    <div class="stop s-cult pick a" style="--s:11;--n:1"><b>Fukuoka</b><span>+ Dazaifu</span></div>
-    <div class="pickmark" style="--s:11;--n:1">or</div>
-    <div class="stop s-opt pick b"  style="--s:11;--n:1"><b>Hiroshima</b><span>+ Miyajima</span></div>
-    <div class="stop s-cult" style="--s:12;--n:1"><b>Naoshima</b><span>Chichu</span></div>
+    <div class="seg travel n"  style="--s:0;--n:1"><b>&#9992;</b><span>in the air</span></div>
+    <div class="seg city"      style="--s:1;--n:3"><b><i>1</i>Tokyo</b><span>Graphy Shibuya</span></div>
+    <div class="seg party"     style="--s:4;--n:2"><b><i>2</i>Labyrinth</b><span>Lodge Sekigahara</span></div>
+    <div class="seg trek"      style="--s:6;--n:3"><b><i>3</i>Yakushima</b><span>Jomon Sugi + moss forest</span></div>
+    <div class="seg culture n" style="--s:9;--n:1"><b>4</b><span>Kagoshima</span></div>
+    <div class="seg culture n" style="--s:10;--n:1"><b>6</b><span>Fukuoka</span></div>
+    <div class="seg culture split" style="--s:11;--n:2"><b><i>7</i>Okayama</b>
+      <span class="segbr eri">Ise</span></div>
+    <div class="seg culture n split" style="--s:13;--n:1"><b>9</b><span>Kyoto</span>
+      <span class="segbr jonas">Tokyo</span></div>
+    <div class="seg city n"    style="--s:14;--n:1"><b>10</b><span>Tokyo</span></div>
+    <div class="seg city n"    style="--s:15;--n:1"><b>10</b><span>Tokyo</span></div>
+    <div class="seg travel n"  style="--s:16;--n:1"><b>&mdash;</b><span>still here</span></div>
   </div>
 
   <!-- ── how hard each day is ───────────────────────────────────────────── -->
-  <div class="rowlabel">Weight of the day<small>time on the move — green is on foot</small></div>
+  <div class="rowlabel">The day<small>where you go, and how much of it is travel — green is on foot</small></div>
   <div class="load daysbg" style="grid-column:2 / span 17">
     <div class="lcell"><i class="bar h3"></i><b>long-haul</b><span>3 routes</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>arrivals</b><span>10:55–21:00</span></div>
-    <div class="lcell"><i class="bar h0"></i><b>0</b><span>static</span></div>
+    <div class="lcell"><i class="bar h2"></i><b>arrivals</b><span>10:55&ndash;21:00</span></div>
+    <div class="lcell"><em>Gear shops</em><i class="bar h0"></i><b>0</b><span>Jimbocho</span></div>
     <div class="lcell"><i class="bar h0"></i><b>0</b><span>static</span></div>
     <div class="lcell"><i class="bar h2"></i><b>bus</b><span>10:00</span></div>
     <div class="lcell"><i class="bar h0"></i><b>0</b><span>on site</span></div>
     <div class="lcell"><i class="bar h4 hot"></i><b>12 h</b><span>door to door</span></div>
-    <div class="lcell"><i class="bar h4 foot"></i><b>9–10 h</b><span>22 km</span></div>
-    <div class="lcell"><i class="bar h2 foot"></i><b>4–5 h</b><span>moss forest</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>3 h</b><span>ferry out</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>2 hops</b><span>50 + 40 min</span></div>
-    <div class="lcell"><i class="bar h3"></i><b>1 h 45</b><span>evening train</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>2 ferries</b><span>Uno ×2</span></div>
+    <div class="lcell"><em>Jomon Sugi</em><i class="bar h4 foot"></i><b>9&ndash;10 h</b><span>22 km</span></div>
+    <div class="lcell"><em>Shiratani</em><i class="bar h2 foot"></i><b>4&ndash;5 h</b><span>moss forest</span></div>
+    <div class="lcell"><em>Sakurajima</em><i class="bar h2"></i><b>3 h</b><span>ferry out</span></div>
+    <div class="lcell"><em><i>5</i>Kumamoto</em><i class="bar h2"></i><b>2 hops</b><span>50 + 40 min</span></div>
+    <div class="lcell"><em><i>6</i>Fukuoka</em><em class="pick">or Hiroshima</em><i class="bar h3"></i><b>1 h 45</b><span>evening train</span></div>
+    <div class="lcell"><em><i>8</i>Naoshima</em><i class="bar h2"></i><b>2 ferries</b><span>Uno &times;2</span></div>
     <div class="lcell"><i class="bar h2"></i><b>1 h</b><span>Jonas 3 h 15</span></div>
     <div class="lcell"><i class="bar h2"></i><b>2 h 20</b><span>Jonas: 0</span></div>
     <div class="lcell"><i class="bar h3"></i><b>07:50</b><span>two fly out</span></div>
-    <div class="lcell"><i class="bar h0"></i><b>—</b><span></span></div>
+    <div class="lcell"><i class="bar h0"></i><b>&mdash;</b><span></span></div>
   </div>
 
-  <!-- ── the things that cannot move ────────────────────────────────────── -->
-  <div class="rowlabel tight">Locked in</div>
-  <div class="fixed daysbg" style="grid-column:2 / span 17">
-    <div class="lock" style="--s:4;--n:2">Labyrinth · booked</div>
-    <div class="lock" style="--s:6;--n:1">Flights</div>
-    <div class="lock" style="--s:15;--n:1">Out 07:50</div>
-  </div>
-
-  <div class="sechead">Who is in Japan</div>
-  <div class="sechead-sp" style="grid-column:2 / span 17"></div>
-
-  <div class="rowlabel">Jonas<small>Stockholm · 7–21 Oct</small></div>
-  <div class="prow daysbg" style="grid-column:2 / span 17">
-    <div class="pbar" style="--s:1.574;--e:15.324"><span>7 Oct <em>13:50, Haneda</em></span><span>21 Oct <em>07:50</em></span></div>
-    <div class="pdiv jonas" style="--s:13;--n:1">Tokyo, not Kyoto</div>
-  </div>
-
-  <div class="rowlabel">Eri<small>via Seoul · 7–21 Oct</small></div>
-  <div class="prow daysbg" style="grid-column:2 / span 17">
-    <div class="pbar" style="--s:1.882;--e:15.868"><span>7 Oct <em>21:00, Narita</em></span><span>21 Oct <em>20:45</em></span></div>
-    <div class="pdiv eri" style="--s:11;--n:2">Ise, not Naoshima</div>
-  </div>
-
-  <div class="rowlabel">Eva<small>via London · 7–24 Oct</small></div>
-  <div class="prow daysbg" style="grid-column:2 / span 17">
-    <div class="pbar oR" style="--s:1.456;--e:17"><span>7 Oct <em>10:55, Haneda</em></span><span><em>stays to 24 Oct</em> ›</span></div>
-  </div>
-
-  <div class="rowlabel">Nathanael<small>5 Oct – 2 Nov</small></div>
-  <div class="prow daysbg" style="grid-column:2 / span 17">
-    <div class="pbar oLR" style="--s:0;--e:17"><span>‹ <em>landed 5 Oct</em></span><span><em>stays to 2 Nov</em> ›</span></div>
-  </div>
-
+  <div class="rowlabel"><span class="full">Jonas</span><span class="init">J</span><small>Stockholm &middot; 7&ndash;21 Oct</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17"><i class="pn travel"></i><i class="pn city">13:50</i><i class="pn city"></i><i class="pn city"></i><i class="pn party"></i><i class="pn party"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn jonas"></i><i class="pn city"></i><i class="pn out">07:50</i><i class="pn gone"></i></div>
+  <div class="rowlabel"><span class="full">Eri</span><span class="init">Er</span><small>via Seoul &middot; 7&ndash;21 Oct</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17"><i class="pn travel"></i><i class="pn city">21:00</i><i class="pn city"></i><i class="pn city"></i><i class="pn party"></i><i class="pn party"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn eri"></i><i class="pn eri"></i><i class="pn culture"></i><i class="pn city"></i><i class="pn out">20:45</i><i class="pn gone"></i></div>
+  <div class="rowlabel"><span class="full">Eva</span><span class="init">Ev</span><small>via London &middot; 7&ndash;24 Oct</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17"><i class="pn travel"></i><i class="pn city">10:55</i><i class="pn city"></i><i class="pn city"></i><i class="pn party"></i><i class="pn party"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn city"></i><i class="pn city"></i><i class="pn on">&rsaquo; 24th</i></div>
+  <div class="rowlabel"><span class="full">Nathanael</span><span class="init">N</span><small>5 Oct &ndash; 2 Nov</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17"><i class="pn city"></i><i class="pn city"></i><i class="pn city"></i><i class="pn city"></i><i class="pn party"></i><i class="pn party"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn city"></i><i class="pn city"></i><i class="pn on">&rsaquo; 2 Nov</i></div>
 </div>
 </div>
-<p class="sub" style="margin:8px 0 0">Bars start at the actual landing time, so you can see the 7th fill up: Eva 10:55, Jonas 13:50, Eri 21:00. All four overlap from the evening of Oct 7 to the morning of Oct 21 — 13 days, though not always in the same city. In the sleep row each internal division is one night; a hatched bottom edge means not all four are in that bed, and the violet and rust bars name who is somewhere else. Outlined blocks are places you only pass through. Two bars run off the right edge.</p>
+<p class="sub" style="margin:8px 0 0">One column per night, one row per person. Where the four rows match we are in the same bed; where one breaks colour, that person is off on their own &mdash; violet is Eri at Ise on the 17th&ndash;18th, rust is Jonas in Tokyo on the 19th, and all four converge on Tokyo for the 20th. The time in an arrival cell is the actual landing on the 7th, so you can watch the day fill up: Eva 10:55, Jonas 13:50, Eri 21:00. Numbers are the map&rsquo;s stops &mdash; 5 Kumamoto and 8 Naoshima appear only on the day row, because nobody sleeps there. Eva and Nathanael run past the right edge.</p>
 
 <div class="legend">
   <span><i class="dot city"></i>Tokyo</span>
@@ -838,11 +765,9 @@ table.days tr.anchor td.d{color:var(--ink)}
   <span><i class="dot trek"></i>Yakushima</span>
   <span><i class="dot culture"></i>Kyushu / Seto / Kansai</span>
   <span><i class="dot travel"></i>Transit</span>
-  <span><i class="dot hollow"></i>Daytime stop, no bed</span>
-  <span><i class="dot hollow dash"></i>Optional</span>
-  <span><i class="dot hatch"></i>Not all four</span>
-  <span><i class="dot eri"></i>Eri, apart</span>
-  <span><i class="dot jonas"></i>Jonas, apart</span>
+  <span><i class="dot eri"></i>Eri, at Ise</span>
+  <span><i class="dot jonas"></i>Jonas, in Tokyo</span>
+  <span><i class="dot hatch"></i>Still here after the 22nd</span>
 </div>
 
 <div class="stats">
