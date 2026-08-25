@@ -459,6 +459,7 @@ table.days tr.anchor td.d{color:var(--ink)}
   white-space:nowrap;overflow:hidden}
 .who b{font-weight:700}
 .who em{font-style:normal;opacity:.72;font-size:9px}
+.who.n{padding:0 4px;letter-spacing:-.2px}   /* one-day chip: no room for the date */
 .who.eri{background:var(--eri)} .who.jonas{background:var(--jonas)}
 .who.eri,.who.jonas{color:var(--branch-ink)}
 
@@ -741,16 +742,17 @@ table.days tr.anchor td.d{color:var(--ink)}
     <div class="seg culture n"    style="--s:9;--n:1"><b>Kagoshima</b><span>Sakurajima</span></div>
     <div class="seg culture n"    style="--s:10;--n:1"><b>Fukuoka</b><span>Hakata</span></div>
     <div class="seg culture part" style="--s:11;--n:2"><b>Okayama</b><span>base for Naoshima</span></div>
-    <div class="seg culture part" style="--s:13;--n:2"><b>Kyoto</b><span>two nights</span></div>
-    <div class="seg culture n part" style="--s:15;--n:1"><b>Kyoto</b><span>Eva + Nate</span></div>
+    <div class="seg culture part" style="--s:13;--n:1"><b>Kyoto</b><span>one night</span></div>
+    <div class="seg city n"       style="--s:14;--n:1"><b>Tokyo</b><span>all four again</span></div>
+    <div class="seg city n part"  style="--s:15;--n:1"><b>Tokyo</b><span>Eva + Nate</span></div>
     <div class="seg travel n"     style="--s:16;--n:1"><b>In Japan</b><span>still here</span></div>
   </div>
 
   <!-- ── the two people who sleep somewhere else ────────────────────────── -->
   <div class="rowlabel">Sleeping apart<small>not in that bed</small></div>
   <div class="apart daysbg" style="grid-column:2 / span 17">
-    <div class="who eri"   style="--s:11;--n:2"><span><b>Eri</b> → Tokyo</span><em>17–18</em></div>
-    <div class="who jonas" style="--s:13;--n:2"><span><b>Jonas</b> → Tokyo</span><em>19–20</em></div>
+    <div class="who eri"   style="--s:11;--n:2"><span><b>Eri</b> → Ise</span><em>17–18</em></div>
+    <div class="who jonas n" style="--s:13;--n:1"><span><b>Jonas</b> Tokyo</span></div>
   </div>
 
   <!-- ── stops with no bed, including the Oct 17 pick-one ───────────────── -->
@@ -784,7 +786,7 @@ table.days tr.anchor td.d{color:var(--ink)}
     <div class="lcell"><i class="bar h3"></i><b>1 h 45</b><span>evening train</span></div>
     <div class="lcell"><i class="bar h2"></i><b>2 ferries</b><span>Uno ×2</span></div>
     <div class="lcell"><i class="bar h2"></i><b>1 h</b><span>Jonas 3 h 15</span></div>
-    <div class="lcell"><i class="bar h0"></i><b>0</b><span>nobody moves</span></div>
+    <div class="lcell"><i class="bar h2"></i><b>2 h 20</b><span>Jonas: 0</span></div>
     <div class="lcell"><i class="bar h3"></i><b>07:50</b><span>two fly out</span></div>
     <div class="lcell"><i class="bar h0"></i><b>—</b><span></span></div>
   </div>
@@ -803,13 +805,13 @@ table.days tr.anchor td.d{color:var(--ink)}
   <div class="rowlabel">Jonas<small>Stockholm · 7–21 Oct</small></div>
   <div class="prow daysbg" style="grid-column:2 / span 17">
     <div class="pbar" style="--s:1.574;--e:15.324"><span>7 Oct <em>13:50, Haneda</em></span><span>21 Oct <em>07:50</em></span></div>
-    <div class="pdiv jonas" style="--s:13;--n:2">Tokyo, not Kyoto</div>
+    <div class="pdiv jonas" style="--s:13;--n:1">Tokyo, not Kyoto</div>
   </div>
 
   <div class="rowlabel">Eri<small>via Seoul · 7–21 Oct</small></div>
   <div class="prow daysbg" style="grid-column:2 / span 17">
     <div class="pbar" style="--s:1.882;--e:15.868"><span>7 Oct <em>21:00, Narita</em></span><span>21 Oct <em>20:45</em></span></div>
-    <div class="pdiv eri" style="--s:11;--n:2">Tokyo, not Naoshima</div>
+    <div class="pdiv eri" style="--s:11;--n:2">Ise, not Naoshima</div>
   </div>
 
   <div class="rowlabel">Eva<small>via London · 7–24 Oct</small></div>
@@ -845,7 +847,7 @@ table.days tr.anchor td.d{color:var(--ink)}
   <div class="stat"><b>3</b> branches</div>
   <div class="stat"><b>2</b> hike days</div>
   <div class="stat"><b>12 h</b> longest travel day</div>
-  <div class="stat"><b>1</b> day nobody moves</div>
+  <div class="stat"><b>1</b> night in Kyoto</div>
   <div class="stat"><b>13</b> days all four overlap</div>
 </div>
 
@@ -926,32 +928,32 @@ table.days tr.anchor td.d{color:var(--ink)}
 <tr>
   <td class="d">17 Oct<small>Sat</small></td>
   <td class="mv">Fukuoka all day &middot; evening train on to Okayama, ~1 h 45</td>
-  <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Tokyo</small></td>
-  <td class="wh"><span class="tag s">Pick one</span>Full day in Fukuoka; Dazaifu Tenmangu, 30 min out, is the best of it. <b>Or</b> trade the afternoon for Hiroshima and Itsukushima on the way east: leave around 13:00, Miyajima mid-afternoon, Okayama by 18:30. Eri flies Fukuoka &rarr; Tokyo either way; the airport is five minutes from the station.</td>
+  <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Ise</small></td>
+  <td class="wh"><span class="tag s">Pick one</span>Full day in Fukuoka; Dazaifu Tenmangu, 30 min out, is the best of it. <b>Or</b> trade the afternoon for Hiroshima and Itsukushima on the way east: leave around 13:00, Miyajima mid-afternoon, Okayama by 18:30. Eri splits off for Ise either way &mdash; Fukuoka &rarr; Nagoya by air is ~1 h 10 against 3 h 20 on the Hakata&ndash;Nagoya shinkansen, then a Kintetsu limited express in, ~1 h 30. The bay boat from Centrair to Tsu skips Nagoya altogether if the timetable lines up.</td>
 </tr>
 <tr>
   <td class="d">18 Oct<small>Sun</small></td>
   <td class="mv">Okayama &rarr; Uno &rarr; ferry to Naoshima, same way back</td>
-  <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Tokyo</small></td>
-  <td class="wh"><span class="tag c">Art island</span>Without Eri, who is in Tokyo. Chichu is timed-entry and sells out &mdash; reserve now. Bikes at Miyanoura to get round the island. Closed Mondays, so Sunday, and busy. Watch the last ferry back to Uno.</td>
+  <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Ise</small></td>
+  <td class="wh"><span class="tag c">Art island</span>Without Eri, who is at Ise Jingu. Chichu is timed-entry and sells out &mdash; reserve now. Bikes at Miyanoura to get round the island. Closed Mondays, so Sunday, and busy. Watch the last ferry back to Uno.</td>
 </tr>
 <tr>
   <td class="d">19 Oct<small>Mon</small></td>
   <td class="mv">Most of you: Okayama &rarr; Kyoto, ~1 h &middot; Jonas: Okayama &rarr; Tokyo, ~3 h 15</td>
   <td class="sl">Kyoto<br><small style="font-weight:400;color:var(--muted)">Jonas: Tokyo</small></td>
-  <td class="wh"><span class="tag s">Splits</span>Jonas trades one rushed Kyoto day for two unhurried Tokyo ones. Everyone else goes early &mdash; nothing left in Okayama, and it buys a Kyoto afternoon. Fushimi Inari is open all night and empty after dark. Eri comes back down from Tokyo as Jonas heads up.</td>
+  <td class="wh"><span class="tag s">Splits</span>Jonas trades Kyoto for two unhurried Tokyo days. Everyone else goes early &mdash; nothing left in Okayama, and with one night here the afternoon <em>is</em> Kyoto. Fushimi Inari is open all night and empty after dark. Eri comes in from Ise as Jonas heads up &mdash; Kintetsu runs a direct limited express to Kyoto, ~2 h, so she has the shrine in the morning and Kyoto by afternoon.</td>
 </tr>
 <tr>
   <td class="d">20 Oct<small>Tue</small></td>
-  <td class="mv">Nobody moves</td>
-  <td class="sl">Kyoto<br><small style="font-weight:400;color:var(--muted)">Jonas: Tokyo</small></td>
-  <td class="wh">Full Kyoto day for the others, full Tokyo day for Jonas, no train either side. Jonas moves out to the Haneda side in the evening.</td>
+  <td class="mv">Kyoto &rarr; Tokyo, ~2 h 20 &middot; Jonas stays put</td>
+  <td class="sl">Tokyo<br><small style="font-weight:400;color:var(--muted)">Jonas: Haneda side</small></td>
+  <td class="wh"><span class="tag s">Back together</span>Kyoto in the morning &mdash; one temple, not four &mdash; then the Nozomi east. All four in the same city again for the last night. Reserve the seats. Jonas moves out to the Haneda side in the evening; the rest can stay central.</td>
 </tr>
 <tr class="anchor">
   <td class="d">21 Oct<small>Wed</small></td>
-  <td class="mv">Jonas 04:30 to the airport, AY5072 Haneda &rarr; Helsinki 07:50 &middot; Eri Kyoto &rarr; Narita for 20:45</td>
+  <td class="mv">Jonas 04:30 to the airport, AY5072 Haneda &rarr; Helsinki 07:50 &middot; Eri Tokyo &rarr; Narita for 20:45</td>
   <td class="sl">&mdash;</td>
-  <td class="wh"><span class="tag x">Out</span>04:30 means a taxi, nothing runs that early; ten minutes from a Haneda-side hotel. Kyoto &rarr; Narita is ~3 h 15 via Tokyo, so Eri can take a slow morning. Eva and Nathanael stay in Kyoto.</td>
+  <td class="wh"><span class="tag x">Out</span>04:30 means a taxi, nothing runs that early; ten minutes from a Haneda-side hotel. Narita is about an hour from central Tokyo now, so Eri has the whole day. Eva and Nathanael stay on in Tokyo.</td>
 </tr>
 <tr>
   <td class="d">22 Oct<small>Thu</small></td>
@@ -965,16 +967,17 @@ table.days tr.anchor td.d{color:var(--ink)}
 <h2>Book these now</h2>
 <p class="sub" style="margin-bottom:6px">Nine unbooked nights from Oct 15, seven weeks out, in October.</p>
 <div class="blist">
-  <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Kyoto, 2 nights (19&ndash;20)</b><span>Everyone except Jonas. October is the run-up to foliage season and Kyoto fills early.</span></div></div>
+  <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Kyoto, 1 night (19)</b><span>Everyone except Jonas. October is the run-up to foliage season and Kyoto fills early. One night, so pick for the evening and the morning train out &mdash; Gion, or near the station.</span></div></div>
   <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Yakushima, 3 nights (12&ndash;14)</b><span>Small island, few beds. Needs 04:00 breakfast and a packed lunch for the Jomon Sugi day. Half-board is the norm and fish by default &mdash; flag vegetarian when booking, not on arrival.</span></div></div>
   <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Chichu Art Museum, 18 Oct</b><span>Timed online reservation only, and Sunday is Naoshima's busiest day.</span></div></div>
-  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Kagoshima 15th, Fukuoka 16th, Okayama 17th&ndash;18th, Tokyo 19th&ndash;20th</b><span>Business hotels, easier &mdash; but the 17th and 18th are Saturday and Sunday. Jonas needs two Tokyo nights, the second Haneda-side.</span></div></div>
-  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Reserve two trains</b><span>Hakata&ndash;Okayama on the evening of the 17th, Jonas&rsquo; Okayama&ndash;Tokyo on the 19th. Short Kyushu hops at the machine.</span></div></div>
+  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Kagoshima 15th, Fukuoka 16th, Okayama 17th&ndash;18th, Tokyo 19th&ndash;20th</b><span>Business hotels, easier &mdash; but the 17th and 18th are Saturday and Sunday, and Okayama is three beds, not four. Jonas needs both Tokyo nights, the second Haneda-side; the other three need the 20th in Tokyo, and Eva and Nathanael the 21st on.</span></div></div>
+  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Ise, 2 nights (17&ndash;18)</b><span>Eri only, so a single. The ryokan and minshuku around Naiku and Futami are a small pool and the shrine draws weekend crowds &mdash; the 17th is a Saturday.</span></div></div>
+  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Reserve three trains</b><span>Hakata&ndash;Okayama on the evening of the 17th, Jonas&rsquo; Okayama&ndash;Tokyo on the 19th, and Kyoto&ndash;Tokyo on the 20th. Short Kyushu hops at the machine.</span></div></div>
   <div class="bitem"><div class="bwhen">On the day</div><div class="btxt"><b>Arakawa shuttle ticket</b><span>On Yakushima the day before the hike, not online. Easy to forget until 04:00 on the 13th.</span></div></div>
 </div>
 
 <h2>The route on a map</h2>
-<p class="sub">Ten stops in the order we reach them. The dark line is the spine everyone shares &mdash; solid is train or bus, dashed is a flight, dotted is a ferry. Colour is reserved for the exceptions: Eri&rsquo;s trip up to Tokyo, Jonas skipping Kansai, and the optional Hiroshima detour. Key is on the map, bottom right.</p>
+<p class="sub">Ten stops in the order we reach them. The dark line is the spine everyone shares &mdash; solid is train or bus, dashed is a flight, dotted is a ferry. Colour is reserved for the exceptions: Eri&rsquo;s two nights at Ise, Jonas skipping Kansai, and the optional Hiroshima detour. Key is on the map, bottom right.</p>
 <div id="map" class="mapbox"></div>
 
 
@@ -984,24 +987,24 @@ table.days tr.anchor td.d{color:var(--ink)}
 <div class="btop">
   <div class="bhead">
     <span class="blab">In-Japan total</span>
-    <strong class="bbig">&asymp; &euro;2,250</strong>
+    <strong class="bbig">&asymp; &euro;2,300</strong>
     <span class="bper">per person</span>
   </div>
   <div class="bsplit">
     <div class="bsk">
-      <span style="width:28.3%"><em>Booked &amp; paid</em><b>&euro;636</b></span>
-      <span style="width:71.7%"><em>Still to come</em><b>&euro;1,610</b></span>
+      <span style="width:27.6%"><em>Booked &amp; paid</em><b>&euro;636</b></span>
+      <span style="width:72.4%"><em>Still to come</em><b>&euro;1,670</b></span>
     </div>
-    <div class="bsb" role="img" aria-label="Of the roughly 2,250 euro per person, 636 is booked and paid and 1,610 is still to come.">
-      <i class="real" style="width:28.3%"></i><i class="est" style="width:71.7%"></i>
+    <div class="bsb" role="img" aria-label="Of the roughly 2,300 euro per person, 636 is booked and paid and 1,670 is still to come.">
+      <i class="real" style="width:27.6%"></i><i class="est" style="width:72.4%"></i>
     </div>
   </div>
 </div>
 
 <div class="stats">
-  <div class="stat"><b>&euro;2,250</b> per person</div>
-  <div class="stat"><b>&euro;9,000</b> group of 4</div>
-  <div class="stat"><b>&euro;150</b> per person per day</div>
+  <div class="stat"><b>&euro;2,300</b> per person</div>
+  <div class="stat"><b>&euro;9,200</b> group of 4</div>
+  <div class="stat"><b>&euro;154</b> per person per day</div>
 </div>
 
 <div class="bcols">
@@ -1019,10 +1022,10 @@ table.days tr.anchor td.d{color:var(--ink)}
     <div class="brow hd"><span class="bcat">Still to come, estimate</span><span class="bbar"></span><span class="bamt">pp</span></div>
     <div class="brow"><span class="bcat">Food &amp; drink <small>~14 days</small></span><span class="bbar"><i class="est" style="width:100%"></i></span><span class="bamt">&euro;560</span></div>
     <div class="brow"><span class="bcat">Lodging <small>9 nights, twin-share</small></span><span class="bbar"><i class="est" style="width:78.6%"></i></span><span class="bamt">&euro;440</span></div>
-    <div class="brow"><span class="bcat">Trains &amp; ferries <small>Yakushima onward</small></span><span class="bbar"><i class="est" style="width:69.6%"></i></span><span class="bamt">&euro;390</span></div>
-    <div class="brow"><span class="bcat">Entries <small>Naoshima, Kyoto temples</small></span><span class="bbar"><i class="est" style="width:21.4%"></i></span><span class="bamt">&euro;120</span></div>
+    <div class="brow"><span class="bcat">Trains &amp; ferries <small>Yakushima onward</small></span><span class="bbar"><i class="est" style="width:80.4%"></i></span><span class="bamt">&euro;450</span></div>
+    <div class="brow"><span class="bcat">Entries <small>Naoshima, one Kyoto temple</small></span><span class="bbar"><i class="est" style="width:21.4%"></i></span><span class="bamt">&euro;120</span></div>
     <div class="brow"><span class="bcat">Buffer</span><span class="bbar"><i class="est" style="width:17.9%"></i></span><span class="bamt">&euro;100</span></div>
-    <div class="brow tot"><span class="bcat">Still to come</span><span class="bbar"></span><span class="bamt">&euro;1,610</span></div>
+    <div class="brow tot"><span class="bcat">Still to come</span><span class="bbar"></span><span class="bamt">&euro;1,670</span></div>
   </div>
 </div>
 
@@ -1033,17 +1036,17 @@ table.days tr.anchor td.d{color:var(--ink)}
 <h2>Practical</h2>
 <p class="sub" style="margin-bottom:12px">Annoying to discover late.</p>
 <p class="note" style="margin-top:0;border-top:none;padding-top:0">
-<b>Ship the festival gear.</b> Takkyubin from Minakami on the 12th to the Tokyo hotel for the 20th, or to Eri's. Four days of planes and ferries follow, and a tent has no business on the Jomon Sugi trail.<br>
-<b>Skip the rail pass.</b> ~&yen;47,000 of shinkansen between the 16th and the 20th against &yen;50,000 for a 7-day national pass, which also excludes Nozomi and Mizuho. Regional Kyushu / Sanyo passes worth a check.<br>
+<b>Ship the festival gear.</b> Takkyubin from Minakami on the 12th to the Tokyo hotel for the 20th &mdash; all four are back there that night &mdash; or to Eri's. Four days of planes and ferries follow, and a tent has no business on the Jomon Sugi trail.<br>
+<b>Rail pass &mdash; look again.</b> Kyoto &rarr; Tokyo pushes the 16th&ndash;20th to roughly &yen;61,000 of shinkansen per person, against &yen;50,000 for a 7-day national pass, so it now pays for everyone but Jonas &mdash; he skips Kyoto and stays under. The pass still excludes Nozomi and Mizuho: Hikari and Sakura instead, maybe 30 min slower on the Tokaido run. Regional Kyushu / Sanyo passes worth a check.<br>
 <b>Vegetarian, in practice.</b> Dashi (bonito stock) is in most broths, miso soup, simmered vegetables and many dipping sauces, so plant-looking food often is not. Tokyo has range, and Jonas has five nights there. Yakushima and Kyushu are the thin part: Fukuoka is a pork town, the yatai a write-off, and the Jomon Sugi day needs food carried in.<br>
 <b>Cash on Yakushima.</b> Cards work everywhere else. 7-Eleven ATMs take foreign cards; mobile Suica in Apple Wallet handles transit.<br>
-<b>Split Jonas' two Tokyo nights.</b> Anywhere on the 19th, Kamata or a Haneda hotel on the 20th.
+<b>Split Jonas' two Tokyo nights.</b> Anywhere on the 19th, Kamata or a Haneda hotel on the 20th &mdash; ten minutes from the terminal. The other three arrive that afternoon and can stay central.
 </p>
 
 <p class="note">
 <b>Fixed anchors:</b> Labyrinth Oct 10&ndash;12 (Minakami Hodaigi), the Haneda&ndash;Kagoshima&ndash;Yakushima flights Oct 12, Jonas' 07:50 departure Oct 21.<br>
 <b>Where it splits:</b> Oct 17. Fukuoka &rarr; Okayama is ~1 h 45. Hiroshima and Itsukushima are an optional detour on that line &mdash; leave Fukuoka around 13:00 and you still reach Okayama by 18:30. Same bed either way.<br>
-<b>Where it splits again:</b> Oct 19. Jonas goes Okayama &rarr; Tokyo, ~3 h 15, skipping Kansai; the rest go Okayama &rarr; Kyoto, ~1 h. No train for anyone on the 20th.<br>
+<b>Where it splits again:</b> Oct 19. Jonas goes Okayama &rarr; Tokyo, ~3 h 15, skipping Kansai; the rest go Okayama &rarr; Kyoto, ~1 h. It closes the next day &mdash; Kyoto &rarr; Tokyo is ~2 h 20, so all four sleep in Tokyo on the last night.<br>
 <b>Watch:</b> Yakushima weather (typhoon tail) can cancel the Oct 15 ferry; Oct 14 is the buffer. Naoshima museums shut Mondays and want advance tickets.
 </p>
 
@@ -1074,7 +1077,8 @@ table.days tr.anchor td.d{color:var(--ink)}
   /* -------------------------------------------------------------- places */
   var TOKYO=[35.68,139.76], MINAKAMI=[36.80,139.00], YAKU=[30.36,130.53], KAGO=[31.60,130.56],
       KUMA=[32.80,130.71], HIRO=[34.39,132.46], OKA=[34.66,133.92], NAO=[34.46,133.99],
-      KANSAI=[34.85,135.60], TOKYO2=[35.60,139.90], HAKATA=[33.59,130.42];
+      KANSAI=[34.85,135.60], TOKYO2=[35.60,139.90], HAKATA=[33.59,130.42],
+      ISE=[34.49,136.71];
 
   /* off:[dx,dy] = where the label sits, in screen px, relative to the true
      point. Fixed in pixels, so nothing collides at any zoom. */
@@ -1087,8 +1091,8 @@ table.days tr.anchor td.d{color:var(--ink)}
     {n:6, name:'Fukuoka',   sub:'Oct 16&ndash;17, a night and a full day',    ll:HAKATA,   c:'var(--culture)', off:[-20,-16]},
     {n:7, name:'Okayama',   sub:'Oct 17&ndash;18, base for two nights',       ll:OKA,      c:'var(--culture)', off:[18,-22]},
     {n:8, name:'Naoshima',  sub:'Oct 18, art island day trip',                ll:NAO,      c:'var(--culture)', off:[18,26]},
-    {n:9, name:'Kyoto',     sub:'Oct 19&ndash;20, without Jonas',             ll:KANSAI,   c:'var(--culture)', off:[10,-24]},
-    {n:10,name:'Tokyo',     sub:'Jonas from the 19th; everyone eventually',   ll:TOKYO2,   c:'var(--city)',    off:[20,22]}
+    {n:9, name:'Kyoto',     sub:'Oct 19, one night, without Jonas',           ll:KANSAI,   c:'var(--culture)', off:[10,-24]},
+    {n:10,name:'Tokyo',     sub:'Jonas from the 19th, all four on the 20th',  ll:TOKYO2,   c:'var(--city)',    off:[20,22]}
   ];
 
   /* --------------------------------------------------------------- lines */
@@ -1132,8 +1136,8 @@ table.days tr.anchor td.d{color:var(--ink)}
     /* branches: one person each, plus the optional stop */
     {a:HAKATA,   b:HIRO,     k:'opt'},                  // Hiroshima on the 17th
     {a:HIRO,     b:OKA,      k:'opt'},
-    {a:HAKATA,   b:TOKYO2,   k:'eri'},                  // Eri up on the 17th
-    {a:TOKYO2,   b:KANSAI,   k:'eri'},                  // and back on the 19th
+    {a:HAKATA,   b:ISE,      k:'eri'},                  // Eri to Ise on the 17th
+    {a:ISE,      b:KANSAI,   k:'eri'},                  // Ise -> Kyoto on the 19th
     {a:OKA,      b:TOKYO2,   k:'jonas'}                 // Jonas skips Kansai
   ];
 
@@ -1202,6 +1206,13 @@ table.days tr.anchor td.d{color:var(--ink)}
    .addTo(map)
    .bindPopup('<b>Hiroshima / Itsukushima</b><br>Optional on the way east on Oct 17, at the cost of the Fukuoka afternoon.');
 
+  L.marker(ISE, {icon:L.divIcon({className:'mpin-wrap', iconSize:[0,0], iconAnchor:[0,0], popupAnchor:[0,-10],
+      html:'<span class="mpin-lead" style="width:21px;transform:rotate(61deg)"></span>'
+         + '<span class="mpin-dot" style="background:var(--m-eri)"></span>'
+         + '<span class="mpin-chip" style="left:10px;top:18px">Ise</span>'})})
+   .addTo(map)
+   .bindPopup('<b>Ise</b><br>Eri only, Oct 17&ndash;18, while everyone else is in Okayama and on Naoshima. Rejoins in Kyoto on the 19th.');
+
   /* --------------------------------------------------------------- legend */
   var sw = function(k){
     return '<svg class="sw" width="30" height="10" viewBox="0 0 30 10" aria-hidden="true">'
@@ -1217,7 +1228,7 @@ table.days tr.anchor td.d{color:var(--ink)}
       + '<span class="mlgd-r">'+sw('air')+'Flight</span>'
       + '<span class="mlgd-r">'+sw('sea')+'Ferry</span>'
       + '<p class="mlgd-h">One person only</p>'
-      + '<span class="mlgd-r">'+sw('eri')+'Eri &rarr; Tokyo 17th, back 19th</span>'
+      + '<span class="mlgd-r">'+sw('eri')+'Eri &rarr; Ise 17th, to Kyoto 19th</span>'
       + '<span class="mlgd-r">'+sw('jonas')+'Jonas &rarr; Tokyo, 19th</span>'
       + '<p class="mlgd-h">Optional</p>'
       + '<span class="mlgd-r">'+sw('opt')+'Hiroshima on the 17th</span>'
@@ -1235,7 +1246,7 @@ table.days tr.anchor td.d{color:var(--ink)}
   }
 
   /* ------------------------------------------------------------ framing */
-  var bounds = L.latLngBounds(pts.concat([HIRO]));
+  var bounds = L.latLngBounds(pts.concat([HIRO, ISE]));
   map.fitBounds(bounds, {paddingTopLeft:[46,34], paddingBottomRight:[96,64], maxZoom:7});
   tuneArrows();
 })();

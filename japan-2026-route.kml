@@ -2,47 +2,66 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
   <name>Japan 2026 — the plan</name>
-  <description>4 pax. Oct 6-21 2026. Numbered in trip order. Solid = train/bus, dashed = flight, dotted = ferry, grey dashed = optional Oct 17 detour.</description>
+  <description>4 pax. Oct 6-21 2026. Stops 1-10 are the shared spine, numbered in trip order. Solid = train or bus, dashed = flight, dotted = ferry. Violet = Eri alone, rust = Jonas alone, grey dashed = the optional Oct 17 detour.</description>
 
   <Style id="ground"><LineStyle><color>ff333333</color><width>4</width></LineStyle></Style>
   <Style id="air"><LineStyle><color>ffb06f3f</color><width>3</width></LineStyle></Style>
   <Style id="sea"><LineStyle><color>ffb06f3f</color><width>2</width></LineStyle></Style>
   <Style id="opt"><LineStyle><color>ff9a9a9a</color><width>2</width></LineStyle></Style>
+  <Style id="eri"><LineStyle><color>ffd29ab7</color><width>3</width></LineStyle></Style>
+  <Style id="jonas"><LineStyle><color>ff5f81d1</color><width>3</width></LineStyle></Style>
   <Style id="stop"><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+  <Style id="side"><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle></Style>
+
+  <!-- ── the ten numbered stops ─────────────────────────────────────── -->
 
   <Placemark><name>1. Tokyo</name><styleUrl>#stop</styleUrl>
-    <description>Oct 7-9 arrival, Hotel Graphy Shibuya. Also Oct 20 last night.</description>
+    <description>Oct 7-9 arrival, Hotel Graphy Shibuya. Gear shopping in Jimbocho on the 8th.</description>
     <Point><coordinates>139.7600,35.6800,0</coordinates></Point></Placemark>
   <Placemark><name>2. Minakami (Gunma)</name><styleUrl>#stop</styleUrl>
-    <description>Oct 10-11 Labyrinth festival, Lodge Sekigahara. Fixed anchor.</description>
+    <description>Oct 10-11 Labyrinth festival, Lodge Sekigahara. Fixed anchor. Ship the gear home from here on the 12th.</description>
     <Point><coordinates>139.0000,36.8000,0</coordinates></Point></Placemark>
   <Placemark><name>3. Yakushima</name><styleUrl>#stop</styleUrl>
-    <description>Oct 12-14. Shiratani Unsuikyo to Jomon Sugi on the 13th, soft day on the 14th.</description>
+    <description>Oct 12-14. Jomon Sugi on the 13th (22 km, 9-10 h, 04:00 shuttle), Shiratani Unsuikyo on the 14th. The 14th is also the weather buffer.</description>
     <Point><coordinates>130.5300,30.3600,0</coordinates></Point></Placemark>
   <Placemark><name>4. Kagoshima</name><styleUrl>#stop</styleUrl>
-    <description>Oct 15. Ferry in from Yakushima, Sakurajima in the afternoon.</description>
+    <description>Oct 15. Ferry in from Yakushima 10:00-13:00, Sakurajima in the afternoon.</description>
     <Point><coordinates>130.5600,31.6000,0</coordinates></Point></Placemark>
   <Placemark><name>5. Kumamoto</name><styleUrl>#stop</styleUrl>
-    <description>Oct 16. Eri's house. The slow day.</description>
+    <description>Oct 16, midday only - no bed here. Meet Eri's parents, castle ten minutes from the station, then on to Fukuoka.</description>
     <Point><coordinates>130.7100,32.8000,0</coordinates></Point></Placemark>
-  <Placemark><name>Optional: Hiroshima / Itsukushima</name><styleUrl>#stop</styleUrl>
-    <description>Oct 17 detour off the Kumamoto-Okayama line. Not everyone - decide per person.</description>
-    <Point><coordinates>132.4600,34.3900,0</coordinates></Point></Placemark>
-  <Placemark><name>6. Okayama</name><styleUrl>#stop</styleUrl>
-    <description>Oct 17-18. Base for two nights.</description>
+  <Placemark><name>6. Fukuoka</name><styleUrl>#stop</styleUrl>
+    <description>Oct 16-17. One night and a full day. Dazaifu Tenmangu is 30 min out. Evening train east on the 17th.</description>
+    <Point><coordinates>130.4200,33.5900,0</coordinates></Point></Placemark>
+  <Placemark><name>7. Okayama</name><styleUrl>#stop</styleUrl>
+    <description>Oct 17-18. Base for two nights, three beds - Eri is at Ise.</description>
     <Point><coordinates>133.9200,34.6600,0</coordinates></Point></Placemark>
-  <Placemark><name>7. Naoshima</name><styleUrl>#stop</styleUrl>
-    <description>Oct 18 day trip via Uno. Museums shut on Mondays.</description>
+  <Placemark><name>8. Naoshima</name><styleUrl>#stop</styleUrl>
+    <description>Oct 18 day trip via Uno. Chichu is timed-entry and sells out. Museums shut Mondays, so Sunday.</description>
     <Point><coordinates>133.9900,34.4600,0</coordinates></Point></Placemark>
-  <Placemark><name>8. Kyoto</name><styleUrl>#stop</styleUrl>
-    <description>Oct 19-20. Two nights. Jonas leaves on the evening of the 20th for his 07:50 flight.</description>
+  <Placemark><name>9. Kyoto</name><styleUrl>#stop</styleUrl>
+    <description>Oct 19. One night, without Jonas. Fushimi Inari is open all night and empty after dark.</description>
     <Point><coordinates>135.6000,34.8500,0</coordinates></Point></Placemark>
+  <Placemark><name>10. Tokyo</name><styleUrl>#stop</styleUrl>
+    <description>Jonas from the 19th, all four on the 20th - the last night together. Jonas moves Haneda-side that evening for the 07:50 flight out.</description>
+    <Point><coordinates>139.9000,35.6000,0</coordinates></Point></Placemark>
 
-  <Placemark><name>Ground: trains and buses</name><styleUrl>#ground</styleUrl>
+  <!-- ── stops only one person makes, plus the optional detour ──────── -->
+
+  <Placemark><name>Eri only: Ise</name><styleUrl>#side</styleUrl>
+    <description>Oct 17-18. Ise Jingu, while everyone else is in Okayama and on Naoshima. Kintetsu limited express straight to Kyoto on the 19th, ~2 h.</description>
+    <Point><coordinates>136.7100,34.4900,0</coordinates></Point></Placemark>
+  <Placemark><name>Optional: Hiroshima / Itsukushima</name><styleUrl>#side</styleUrl>
+    <description>Oct 17 detour on the Fukuoka-Okayama line, at the cost of the Fukuoka afternoon. Leave around 13:00, Miyajima mid-afternoon, Okayama by 18:30.</description>
+    <Point><coordinates>132.4600,34.3900,0</coordinates></Point></Placemark>
+
+  <!-- ── the shared spine, in order ─────────────────────────────────── -->
+
+  <Placemark><name>Ground: Tokyo - Minakami - Tokyo (Oct 10 and 12)</name><styleUrl>#ground</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
       139.7600,35.6800,0 139.0000,36.8000,0 139.7600,35.6800,0
     </coordinates></LineString></Placemark>
-  <Placemark><name>Air: Haneda - Kagoshima - Yakushima (Oct 12) + fly out</name><styleUrl>#air</styleUrl>
+  <Placemark><name>Air: Haneda - Kagoshima - Yakushima (Oct 12)</name><styleUrl>#air</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
       139.7600,35.6800,0 130.5600,31.6000,0 130.5300,30.3600,0
     </coordinates></LineString></Placemark>
@@ -50,17 +69,43 @@
     <LineString><tessellate>1</tessellate><coordinates>
       130.5300,30.3600,0 130.5600,31.6000,0
     </coordinates></LineString></Placemark>
-  <Placemark><name>Ground: Kagoshima - Kumamoto - Okayama - Kansai - Tokyo</name><styleUrl>#ground</styleUrl>
+  <Placemark><name>Ground: Kagoshima - Kumamoto - Fukuoka (Oct 16)</name><styleUrl>#ground</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
-      130.5600,31.6000,0 130.7100,32.8000,0 133.9200,34.6600,0 135.6000,34.8500,0 139.7600,35.6800,0
+      130.5600,31.6000,0 130.7100,32.8000,0 130.4200,33.5900,0
     </coordinates></LineString></Placemark>
-  <Placemark><name>Optional: Kumamoto - Hiroshima - Okayama (Oct 17)</name><styleUrl>#opt</styleUrl>
+  <Placemark><name>Ground: Fukuoka - Okayama (Oct 17, evening)</name><styleUrl>#ground</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
-      130.7100,32.8000,0 132.4600,34.3900,0 133.9200,34.6600,0
+      130.4200,33.5900,0 133.9200,34.6600,0
     </coordinates></LineString></Placemark>
   <Placemark><name>Sea: Uno - Naoshima day trip (Oct 18)</name><styleUrl>#sea</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
       133.9200,34.6600,0 133.9900,34.4600,0 133.9200,34.6600,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Ground: Okayama - Kyoto - Tokyo (Oct 19 and 20)</name><styleUrl>#ground</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      133.9200,34.6600,0 135.6000,34.8500,0 139.9000,35.6000,0
+    </coordinates></LineString></Placemark>
+
+  <!-- ── branches ───────────────────────────────────────────────────── -->
+
+  <Placemark><name>Eri only: Fukuoka - Ise (Oct 17), Ise - Kyoto (Oct 19)</name><styleUrl>#eri</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      130.4200,33.5900,0 136.7100,34.4900,0 135.6000,34.8500,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Jonas only: Okayama - Tokyo (Oct 19), skipping Kansai</name><styleUrl>#jonas</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      133.9200,34.6600,0 139.9000,35.6000,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Optional: Fukuoka - Hiroshima - Okayama (Oct 17)</name><styleUrl>#opt</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      130.4200,33.5900,0 132.4600,34.3900,0 133.9200,34.6600,0
+    </coordinates></LineString></Placemark>
+
+  <!-- ── out ────────────────────────────────────────────────────────── -->
+
+  <Placemark><name>Air: out on Oct 21</name><styleUrl>#air</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      139.9000,35.6000,0 140.3900,35.7700,0
     </coordinates></LineString></Placemark>
 
 </Document>
