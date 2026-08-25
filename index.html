@@ -466,7 +466,6 @@ table.days tr.anchor td.d{color:var(--ink)}
 .lcell em{font-style:normal;font-weight:700;line-height:1.15;letter-spacing:-.2px;
   color:var(--culture);margin-bottom:auto;padding-top:4px;font-size:8px;
   max-width:100%;overflow:hidden;text-align:center}
-.lcell em i{font-style:normal;opacity:.65;margin-right:2px}
 .lcell em.pick{color:var(--muted);font-weight:400;margin-bottom:0;padding-top:1px}
 .lcell{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
   padding:0 3px 4px;overflow:hidden;text-align:center}
@@ -606,9 +605,6 @@ table.days tr.anchor td.d{color:var(--ink)}
 .mlgd-h:first-child{margin-top:0}
 .mlgd-r{display:flex;align-items:center;gap:7px;font-size:var(--fs-mini);line-height:1.5;color:var(--ink)}
 .mlgd-r .sw{flex:0 0 30px;overflow:visible}
-.mlgd-n{margin:var(--sp-2) 0 0;padding-top:6px;border-top:1px solid var(--line2);
-  font-size:var(--fs-micro);line-height:1.35;color:var(--muted)}
-
 .mapbox .leaflet-popup-content-wrapper,.mapbox .leaflet-popup-tip{
   background:var(--m-panel);color:var(--ink);border-radius:3px;box-shadow:0 1px 6px rgba(0,0,0,.18)}
 .mapbox .leaflet-popup-content{margin:9px var(--sp-3);font-size:var(--fs-small);line-height:1.4}
@@ -655,9 +651,6 @@ table.days tr.anchor td.d{color:var(--ink)}
 .bamt{flex:0 0 62px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .brow.tot{border-top:2px solid var(--line);border-bottom:none;font-weight:700;margin-top:2px}
 .brow.tot .bamt{color:var(--b-tot)}
-.bscale{max-width:1120px;margin:14px 0 0;padding-top:9px;border-top:1px solid var(--line2);
-  font-size:var(--fs-mini);color:var(--muted)}
-
 @media (max-width:640px){
   .bcat{flex:0 0 130px}
   .bbig{font-size:28px}
@@ -708,11 +701,11 @@ table.days tr.anchor td.d{color:var(--ink)}
   </div>
 
   <!-- ── where the bed is ───────────────────────────────────────────────── -->
-  <div class="rowlabel">Where we sleep<small>numbered as on the map</small></div>
+  <div class="rowlabel">Where we sleep</div>
   <div class="track daysbg" style="grid-column:2 / span 17">
     <div class="seg travel n"  style="--s:0;--n:1"><b>&#9992;</b><span>in the air</span></div>
     <div class="seg city"      style="--s:1;--n:3"><b><i>1</i>Tokyo</b><span>Graphy Shibuya</span></div>
-    <div class="seg party"     style="--s:4;--n:2"><b><i>2</i>Labyrinth</b><span>Lodge Sekigahara</span></div>
+    <div class="seg party"     style="--s:4;--n:2"><b><i>2</i>Labyrinth</b><span>Sekigahara</span></div>
     <div class="seg trek"      style="--s:6;--n:3"><b><i>3</i>Yakushima</b><span>Jomon Sugi + moss forest</span></div>
     <div class="seg culture n" style="--s:9;--n:1"><b>4</b><span>Kagoshima</span></div>
     <div class="seg culture n" style="--s:10;--n:1"><b>6</b><span>Fukuoka</span></div>
@@ -726,22 +719,22 @@ table.days tr.anchor td.d{color:var(--ink)}
   </div>
 
   <!-- ── how hard each day is ───────────────────────────────────────────── -->
-  <div class="rowlabel">The day<small>where you go, and how much of it is travel — green is on foot</small></div>
+  <div class="rowlabel">The day</div>
   <div class="load daysbg" style="grid-column:2 / span 17">
     <div class="lcell"><i class="bar h3"></i><b>long-haul</b><span>3 routes</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>arrivals</b><span>10:55&ndash;21:00</span></div>
+    <div class="lcell"><i class="bar h2"></i><b>arrivals</b><span>all three</span></div>
     <div class="lcell"><em>Gear shops</em><i class="bar h0"></i><b>0</b><span>Jimbocho</span></div>
     <div class="lcell"><i class="bar h0"></i><b>0</b><span>static</span></div>
     <div class="lcell"><i class="bar h2"></i><b>bus</b><span>10:00</span></div>
     <div class="lcell"><i class="bar h0"></i><b>0</b><span>on site</span></div>
-    <div class="lcell"><i class="bar h4 hot"></i><b>12 h</b><span>door to door</span></div>
+    <div class="lcell"><i class="bar h4 hot"></i><b>12 h</b><span>transit</span></div>
     <div class="lcell"><em>Jomon Sugi</em><i class="bar h4 foot"></i><b>9&ndash;10 h</b><span>22 km</span></div>
-    <div class="lcell"><em>Shiratani</em><i class="bar h2 foot"></i><b>4&ndash;5 h</b><span>moss forest</span></div>
+    <div class="lcell"><em>Shiratani</em><i class="bar h2 foot"></i><b>4&ndash;5 h</b><span>moss</span></div>
     <div class="lcell"><em>Sakurajima</em><i class="bar h2"></i><b>3 h</b><span>ferry out</span></div>
-    <div class="lcell"><em><i>5</i>Kumamoto</em><i class="bar h2"></i><b>2 hops</b><span>50 + 40 min</span></div>
-    <div class="lcell"><em><i>6</i>Fukuoka</em><em class="pick">or Hiroshima</em><i class="bar h3"></i><b>1 h 45</b><span>evening train</span></div>
-    <div class="lcell"><em><i>8</i>Naoshima</em><i class="bar h2"></i><b>2 ferries</b><span>Uno &times;2</span></div>
-    <div class="lcell"><i class="bar h2"></i><b>1 h</b><span>Jonas 3 h 15</span></div>
+    <div class="lcell"><em>Kumamoto</em><i class="bar h2"></i><b>2 hops</b><span>50+40</span></div>
+    <div class="lcell"><em>Fukuoka</em><em class="pick">or Hiroshima</em><i class="bar h3"></i><b>1 h 45</b><span>evening</span></div>
+    <div class="lcell"><em>Naoshima</em><i class="bar h2"></i><b>2 ferries</b><span>Uno &times;2</span></div>
+    <div class="lcell"><i class="bar h2"></i><b>1 h</b><span>Jonas 3 h</span></div>
     <div class="lcell"><i class="bar h2"></i><b>2 h 20</b><span>Jonas: 0</span></div>
     <div class="lcell"><i class="bar h3"></i><b>07:50</b><span>two fly out</span></div>
     <div class="lcell"><i class="bar h0"></i><b>&mdash;</b><span></span></div>
@@ -757,7 +750,6 @@ table.days tr.anchor td.d{color:var(--ink)}
   <div class="prow daysbg" style="grid-column:2 / span 17"><i class="pn city"></i><i class="pn city"></i><i class="pn city"></i><i class="pn city"></i><i class="pn party"></i><i class="pn party"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn trek"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn culture"></i><i class="pn city"></i><i class="pn city"></i><i class="pn on">&rsaquo; 2 Nov</i></div>
 </div>
 </div>
-<p class="sub" style="margin:8px 0 0">One column per night, one row per person. Where the four rows match we are in the same bed; where one breaks colour, that person is off on their own &mdash; violet is Eri at Ise on the 17th&ndash;18th, rust is Jonas in Tokyo on the 19th, and all four converge on Tokyo for the 20th. The time in an arrival cell is the actual landing on the 7th, so you can watch the day fill up: Eva 10:55, Jonas 13:50, Eri 21:00. Numbers are the map&rsquo;s stops &mdash; 5 Kumamoto and 8 Naoshima appear only on the day row, because nobody sleeps there. Eva and Nathanael run past the right edge.</p>
 
 <div class="legend">
   <span><i class="dot city"></i>Tokyo</span>
@@ -782,7 +774,7 @@ table.days tr.anchor td.d{color:var(--ink)}
 
 
 <h2>Day by day</h2>
-<p class="sub" style="margin-bottom:12px">Named flights and tours in the move column are booked. Oct 15 onward is decided, not booked.</p>
+<p class="sub" style="margin-bottom:12px">Named flights and tours are booked. Oct 15 onward is decided, not booked.</p>
 <div class="scroll">
 <table class="days">
 <tr>
@@ -906,7 +898,6 @@ table.days tr.anchor td.d{color:var(--ink)}
 </div>
 
 <h2>The route on a map</h2>
-<p class="sub">Ten stops in the order we reach them. The dark line is the spine everyone shares &mdash; solid is train or bus, dashed is a flight, dotted is a ferry. Colour is reserved for the exceptions: Eri&rsquo;s two nights at Ise, Jonas skipping Kansai, and the optional Hiroshima detour. Key is on the map, bottom right.</p>
 <div id="map" class="mapbox"></div>
 
 
@@ -958,8 +949,7 @@ table.days tr.anchor td.d{color:var(--ink)}
   </div>
 </div>
 
-<p class="bscale">One scale across both blocks: a full-width bar is &euro;560, faint gridlines mark &euro;100. Solid bars are money already gone, outlined bars are estimates.</p>
-<p class="sub">Booked figures come straight from the expenses sheet; the rest is a guess and will move. Full breakdown lives in the Google Sheet.</p>
+<p class="sub">Booked figures come from the expenses sheet; the rest will move.</p>
 
 
 <h2>Practical</h2>
@@ -1152,7 +1142,7 @@ table.days tr.anchor td.d{color:var(--ink)}
       var d = L.DomUtil.create('div','mlegend');
       d.innerHTML =
         '<details class="mlgd" open><summary>Key</summary><div class="mlgd-b">'
-      + '<p class="mlgd-h">Everyone &mdash; stops 1 to 10 in order</p>'
+      + '<p class="mlgd-h">Everyone</p>'
       + '<span class="mlgd-r">'+sw('ground')+'Train or bus</span>'
       + '<span class="mlgd-r">'+sw('air')+'Flight</span>'
       + '<span class="mlgd-r">'+sw('sea')+'Ferry</span>'
@@ -1161,7 +1151,6 @@ table.days tr.anchor td.d{color:var(--ink)}
       + '<span class="mlgd-r">'+sw('jonas')+'Jonas &rarr; Tokyo, 19th</span>'
       + '<p class="mlgd-h">Optional</p>'
       + '<span class="mlgd-r">'+sw('opt')+'Hiroshima on the 17th</span>'
-      + '<p class="mlgd-n">Arrowheads point the way we travel. Out and back are drawn as two arcs, not one line.</p>'
       + '</div></details>';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
