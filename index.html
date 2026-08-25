@@ -77,8 +77,9 @@
   --flag:#b0442c;       /* weekends, "do first", urgency */
   --pos:#14683d;        /* money totals */
 
-  /* timeline geometry (unchanged: .daysbg gradients depend on --col) - */
-  --col:68px; --label:150px;
+  /* timeline geometry. --col is now only the CAP on a column; placement is
+     percentage-based (100%/17 per day) so the grid shrinks to any width. */
+  --col:68px; --label:72px;
   --we:#faf6f0;         /* weekend tint */
   --person:#4a5568;     /* presence bars */
 
@@ -377,8 +378,9 @@ table.days tr.anchor td.d{color:var(--ink)}
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── frame ────────────────────────────────────────────────────────────────── */
-.grid{display:grid;grid-template-columns:var(--label) repeat(17,var(--col));
-  min-width:calc(var(--label) + 17 * var(--col));border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:var(--label) repeat(17,minmax(0,1fr));
+  max-width:calc(var(--label) + 17 * var(--col));   /* never grows past today's width */
+  border-top:1px solid var(--line)}
 
 /* Row names stay pinned while the chart scrolls sideways. The grid is 1306px,
    so it overflows even a 1280px viewport — this is not only a phone fix.
@@ -405,12 +407,12 @@ table.days tr.anchor td.d{color:var(--ink)}
 /* gridlines + weekend tint, derived from --col instead of hardcoded px */
 .daysbg{background-image:
   linear-gradient(to right,
-    transparent 0 calc(4 * var(--col)),
-    var(--we)   calc(4 * var(--col)) calc(6 * var(--col)),
-    transparent calc(6 * var(--col)) calc(11 * var(--col)),
-    var(--we)   calc(11 * var(--col)) calc(13 * var(--col)),
-    transparent calc(13 * var(--col))),
-  repeating-linear-gradient(to right, var(--line2) 0 1px, transparent 1px var(--col))}
+    transparent 0 calc(4 * 100% / 17),
+    var(--we)   calc(4 * 100% / 17) calc(6 * 100% / 17),
+    transparent calc(6 * 100% / 17) calc(11 * 100% / 17),
+    var(--we)   calc(11 * 100% / 17) calc(13 * 100% / 17),
+    transparent calc(13 * 100% / 17)),
+  repeating-linear-gradient(to right, var(--line2) 0 1px, transparent 1px calc(100% / 17))}
 
 .sechead{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:.5px;
   color:var(--muted);font-weight:600;text-align:right;padding:16px 10px 5px 0;align-self:end}
@@ -418,8 +420,8 @@ table.days tr.anchor td.d{color:var(--ink)}
 
 /* one shared placement rule: --s = day index from Oct 6, --n = span in days */
 .seg,.leg,.stop,.who,.lock,.pickmark,.pdiv{position:absolute;
-  left:calc(var(--s) * var(--col) + var(--seggap));
-  width:calc(var(--n) * var(--col) - 2 * var(--seggap))}
+  left:calc(var(--s) * (100% / 17) + var(--seggap));
+  width:calc(var(--n) * (100% / 17) - 2 * var(--seggap))}
 
 /* ── leg band ─────────────────────────────────────────────────────────────── */
 .legband{position:relative;height:22px;border-bottom:1px solid var(--line2)}
@@ -432,11 +434,11 @@ table.days tr.anchor td.d{color:var(--ink)}
 .track{position:relative;height:52px;border-bottom:1px solid var(--line2)}
 .seg{top:6px;height:40px;color:var(--on-accent);padding:5px 7px;line-height:1.15;
   overflow:hidden;display:flex;flex-direction:column;justify-content:center;border-radius:2px;
-  /* one hairline per night boundary, so the nights are countable */
-  background-image:repeating-linear-gradient(to right,
-    transparent 0 calc(var(--col) - 1px),
-    var(--nightline) calc(var(--col) - 1px) var(--col));
-  background-position-x:calc(-1 * var(--seggap))}
+  /* one hairline per night boundary, so the nights are countable. Tiled at
+     1/--n of the block's own width, since a column is no longer a fixed px. */
+  background-image:linear-gradient(to right,
+    transparent calc(100% - 1px), var(--nightline) calc(100% - 1px));
+  background-size:calc(100% / var(--n)) 100%}
 .seg b{font-size:var(--fs-mini);font-weight:700;
   white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .seg span{font-size:var(--fs-micro);opacity:.92;
@@ -506,7 +508,7 @@ table.days tr.anchor td.d{color:var(--ink)}
 .prow{position:relative;height:30px;border-bottom:1px solid var(--line2)}
 .pbar{position:absolute;top:6px;height:18px;background:var(--person);color:var(--on-accent);
   border-radius:2px;
-  left:calc(var(--s) * var(--col));width:calc((var(--e) - var(--s)) * var(--col));
+  left:calc(var(--s) * (100% / 17));width:calc((var(--e) - var(--s)) * (100% / 17));
   display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 9px;
   font-size:var(--fs-micro);white-space:nowrap;overflow:hidden}
 .pbar em{font-style:normal;opacity:.72}
@@ -537,10 +539,12 @@ table.days tr.anchor td.d{color:var(--ink)}
   font-size:var(--fs-small);color:var(--muted)}
 .stat b{font-size:var(--fs-body);color:var(--ink);margin-right:3px}
 
-@media (max-width:640px){
-  :root{--label:104px}
-  .rowlabel{font-size:var(--fs-mini);padding-right:8px}
-  .rowlabel small{font-size:9px}
+.rowlabel .init{display:none}
+@media (max-width:700px){
+  :root{--label:22px}                     /* initials only, so nothing scrolls */
+  .rowlabel{font-size:9px;padding:0 3px 0 0;text-align:center;align-items:center}
+  .rowlabel small,.rowlabel .full{display:none}
+  .rowlabel .init{display:block;font-weight:700}
 }
 
 
