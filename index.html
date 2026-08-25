@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Japan 2026 — the plan (Eri's Route 1)</title>
+<title>Japan 2026 — the plan</title>
 <style>
 :root{
   --bg:#ffffff; --ink:#1c1c1c; --muted:#6b6b6b; --line:#d9d9d9; --line2:#efefef;
   --city:#3f6fb0; --party:#a83c8f; --trek:#2f8a4e; --culture:#c29a3a; --travel:#b3b3b3;
-  --col:56px; --label:150px;
+  --col:68px; --label:150px;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -17,8 +17,8 @@ h1{font-size:22px;margin:0 0 3px;font-weight:700;letter-spacing:-.2px}
 h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 .sub{color:var(--muted);margin:0 0 26px;font-size:13px}
 .scroll{overflow-x:auto}
-.grid{display:grid;grid-template-columns:var(--label) repeat(18,var(--col));
-  min-width:calc(var(--label) + 18*var(--col));border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:var(--label) repeat(17,var(--col));
+  min-width:calc(var(--label) + 17*var(--col));border-top:1px solid var(--line)}
 .rowlabel{display:flex;flex-direction:column;justify-content:center;padding:0 12px 0 0;
   font-weight:600;font-size:12px;text-align:right;border-bottom:1px solid var(--line2)}
 .rowlabel small{font-weight:400;color:var(--muted);font-size:10px;margin-top:1px}
@@ -27,10 +27,14 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 .date .d{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
 .date.we .n{color:#b64a34}
 .track{position:relative;height:52px;border-bottom:1px solid var(--line2)}
-.seg{position:absolute;top:6px;height:40px;color:#fff;padding:5px 8px;font-size:11px;
+.seg{position:absolute;top:6px;height:40px;color:#fff;padding:5px 7px;font-size:11px;
   line-height:1.15;overflow:hidden;display:flex;flex-direction:column;justify-content:center;border-radius:2px}
 .seg b{font-size:11px;font-weight:700;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .seg span{font-size:10px;opacity:.92;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.seg.peel{top:28px;height:24px;z-index:2;box-shadow:0 -1px 0 #fff;padding:3px 4px}
+.seg.peel b{font-size:9px;letter-spacing:-.1px}
+.seg.n{padding:5px 4px}
+.seg.n b{font-size:10px} .seg.n span{font-size:9px}
 .city{background:var(--city)} .party{background:var(--party)} .trek{background:var(--trek)}
 .culture{background:var(--culture)} .travel{background:var(--travel);color:#3a3a3a}
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:20px 0 0;font-size:12px;color:var(--muted)}
@@ -39,26 +43,49 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 .stats{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
 .stat{border:1px solid var(--line);border-radius:3px;padding:4px 11px;font-size:12px;color:var(--muted)}
 .stat b{font-size:15px;color:var(--ink);margin-right:3px}
+table.days{border-collapse:collapse;width:100%;min-width:720px;font-size:13px}
+table.days th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--muted);font-weight:600;padding:0 10px 6px 0;border-bottom:1px solid var(--line)}
+table.days td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line2);vertical-align:top}
+table.days td.d{white-space:nowrap;font-weight:700;width:96px}
+table.days td.d small{display:block;font-weight:400;color:var(--muted);font-size:10px;
+  text-transform:uppercase;letter-spacing:.4px}
+table.days td.mv{width:31%;color:#3a3a3a}
+table.days td.sl{width:17%;font-weight:600}
+table.days td.wh{color:var(--muted)}
+table.days tr.anchor td{background:#fafafa}
+table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
+.tag{display:inline-block;font-size:9px;letter-spacing:.5px;text-transform:uppercase;
+  font-weight:700;color:#fff;border-radius:2px;padding:1px 5px;margin-right:6px;vertical-align:1px}
+.tag.p{background:var(--party)} .tag.t{background:var(--trek)}
+.tag.x{background:var(--travel);color:#3a3a3a} .tag.c{background:var(--culture)}
+.tag.s{background:#6b6b6b}
 .brow{display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid var(--line2);font-size:13px}
-.bcat{flex:0 0 170px}
+.bcat{flex:0 0 210px}
+.bcat small{color:var(--muted)}
 .bbar{flex:1;height:14px;background:#f2f2f2;border-radius:2px;overflow:hidden}
 .bbar i{display:block;height:100%;background:#3f6fb0}
+.bbar i.est{background:#b7c7dc}
 .bamt{flex:0 0 62px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .brow.tot{border-top:2px solid var(--line);border-bottom:none;font-weight:700;margin-top:2px}
 .brow.tot .bamt{color:#166534}
 .note{margin-top:26px;color:var(--muted);font-size:12px;border-top:1px solid var(--line2);padding-top:12px}
+.note b{color:var(--ink)}
+@media (max-width:640px){ body{padding:24px 16px 48px} .bcat{flex:0 0 130px} }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
 <h1>Japan 2026: the plan</h1>
-<p class="sub">Eri's Route 1. 4 pax, Oct 8&ndash;25. Party (Labyrinth) &rarr; Yakushima &rarr; Kyushu &amp; the San'yo coast &rarr; Kansai &rarr; Tokyo. Transit days shown in grey.</p>
+<p class="sub">4 pax &middot; Oct 6&ndash;21. One spine, two branches: Tokyo &rarr; Labyrinth &rarr; Yakushima &rarr; Kyushu &rarr; the Seto Inland Sea &rarr; Kansai &rarr; Tokyo. Transit days in grey.</p>
 
 <div class="scroll">
 <div class="grid">
 
   <div class="rowlabel"></div>
+  <div class="date"><div class="n">6</div><div class="d">Tue</div></div>
+  <div class="date"><div class="n">7</div><div class="d">Wed</div></div>
   <div class="date"><div class="n">8</div><div class="d">Thu</div></div>
   <div class="date"><div class="n">9</div><div class="d">Fri</div></div>
   <div class="date we"><div class="n">10</div><div class="d">Sat</div></div>
@@ -74,58 +101,193 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
   <div class="date"><div class="n">20</div><div class="d">Tue</div></div>
   <div class="date"><div class="n">21</div><div class="d">Wed</div></div>
   <div class="date"><div class="n">22</div><div class="d">Thu</div></div>
-  <div class="date we"><div class="n">23</div><div class="d">Fri</div></div>
-  <div class="date we"><div class="n">24</div><div class="d">Sat</div></div>
-  <div class="date"><div class="n">25</div><div class="d">Sun</div></div>
 
-  <div class="rowlabel">The plan<small>Eri's Route 1</small></div>
-  <div class="track" style="grid-column:2 / span 18">
-    <div class="seg city"    style="left:0;width:108px">    <b>Tokyo</b><span>arrive, 2 days</span></div>
-    <div class="seg party"   style="left:112px;width:164px"><b>Labyrinth</b><span>Minakami festival</span></div>
-    <div class="seg travel"  style="left:280px;width:52px"> <b>Transit</b><span>&darr; fly</span></div>
-    <div class="seg trek"    style="left:336px;width:164px"><b>Yakushima</b><span>decompress + hike</span></div>
-    <div class="seg travel"  style="left:504px;width:52px"> <b>Transit</b><span>&uarr; Kyushu</span></div>
-    <div class="seg culture" style="left:560px;width:108px"><b>Kyushu</b><span>Amakusa / Fukuoka</span></div>
-    <div class="seg travel"  style="left:672px;width:52px"> <b>Transit</b><span>train</span></div>
-    <div class="seg culture" style="left:728px;width:164px"><b>Hiroshima &rarr; Kansai</b><span>Naoshima / Osaka / Kyoto</span></div>
-    <div class="seg city"    style="left:896px;width:108px"><b>Tokyo</b><span>finale</span></div>
+  <div class="rowlabel">Where we sleep<small>base each night</small></div>
+  <div class="track" style="grid-column:2 / span 17">
+    <div class="seg travel n"  style="left:0;width:64px">    <b>In the air</b><span>3 routes</span></div>
+    <div class="seg city"      style="left:68px;width:200px"><b>Tokyo</b><span>Graphy Shibuya</span></div>
+    <div class="seg party"     style="left:272px;width:132px"><b>Labyrinth</b><span>Minakami</span></div>
+    <div class="seg travel n"  style="left:408px;width:64px"> <b>Transit</b><span>&darr; fly south</span></div>
+    <div class="seg trek"      style="left:476px;width:132px"><b>Yakushima</b><span>Jomon Sugi hike</span></div>
+    <div class="seg culture n" style="left:612px;width:64px"> <b>Kagoshima</b><span>Sakurajima</span></div>
+    <div class="seg culture n" style="left:680px;width:64px"> <b>Kumamoto</b><span>Eri's</span></div>
+    <div class="seg culture"   style="left:748px;width:132px"><b>Okayama</b><span>Naoshima day trip</span></div>
+    <div class="seg culture"   style="left:884px;width:132px"><b>Kyoto</b><span>two nights</span></div>
+    <div class="seg city n peel" style="left:952px;width:64px"><b>Jonas &rarr; Tokyo</b></div>
+    <div class="seg travel n"  style="left:1020px;width:64px"><b>Fly out</b><span>07:50</span></div>
+    <div class="seg travel n"  style="left:1088px;width:64px"><b>Eva+Nate</b><span>stay on</span></div>
   </div>
 
 </div>
 </div>
 
-<h2>The route on a map</h2>
-<p class="sub" style="margin-bottom:12px">Tokyo &rarr; Minakami &rarr; fly to Yakushima &rarr; Amakusa &rarr; Fukuoka &rarr; Hiroshima &rarr; Naoshima &rarr; Osaka/Kyoto &rarr; Tokyo. Solid = ground (train / ferry), dashed = flight.</p>
-<div id="map" style="height:480px;border:1px solid var(--line);border-radius:4px"></div>
-<div class="stats">
-  <div class="stat"><b>9</b> stops</div>
-  <div class="stat"><b>~5</b> travel days</div>
-  <div class="stat"><b>1</b> big hike (Yakushima)</div>
-  <div class="stat"><b>~4</b> days in Tokyo</div>
-</div>
-
 <div class="legend">
-  <span><i class="dot" style="background:var(--city)"></i>City / Tokyo</span>
+  <span><i class="dot" style="background:var(--city)"></i>Tokyo</span>
   <span><i class="dot" style="background:var(--party)"></i>Festival</span>
   <span><i class="dot" style="background:var(--trek)"></i>Yakushima hike</span>
-  <span><i class="dot" style="background:var(--culture)"></i>Kyushu / Kansai sightseeing</span>
+  <span><i class="dot" style="background:var(--culture)"></i>Kyushu / Seto / Kansai</span>
   <span><i class="dot" style="background:var(--travel)"></i>Transit</span>
 </div>
 
-<h2>Rough budget, once you've landed</h2>
-<p class="sub" style="margin-bottom:12px">Per person, in-Japan only (excludes international flights). Twin-share lodging, ~16 days.</p>
-<div style="max-width:560px">
-  <div class="brow"><span class="bcat">Getting around</span><span class="bbar"><i style="width:100%"></i></span><span class="bamt">&euro;780</span></div>
-  <div class="brow"><span class="bcat">Lodging (~15 nights)</span><span class="bbar"><i style="width:78%"></i></span><span class="bamt">&euro;610</span></div>
-  <div class="brow"><span class="bcat">Food &amp; drink</span><span class="bbar"><i style="width:60%"></i></span><span class="bamt">&euro;470</span></div>
-  <div class="brow"><span class="bcat">Sightseeing / entries</span><span class="bbar"><i style="width:26%"></i></span><span class="bamt">&euro;205</span></div>
-  <div class="brow"><span class="bcat">Festival ticket</span><span class="bbar"><i style="width:20%"></i></span><span class="bamt">&euro;160</span></div>
-  <div class="brow"><span class="bcat">Fees, insurance, misc</span><span class="bbar"><i style="width:19%"></i></span><span class="bamt">&euro;150</span></div>
-  <div class="brow tot"><span class="bcat">In-Japan total / person</span><span class="bbar"></span><span class="bamt">&euro;2,375</span></div>
+<div class="stats">
+  <div class="stat"><b>8</b> bases</div>
+  <div class="stat"><b>14</b> nights</div>
+  <div class="stat"><b>2</b> hike days</div>
+  <div class="stat"><b>1</b> festival</div>
+  <div class="stat"><b>1</b> art island</div>
 </div>
-<p class="sub" style="margin-top:8px">Group of 4 &asymp; &euro;9,500 &middot; about &euro;150 / person / day. With international flights, ~&euro;3,250 / person all-in. Full breakdown in the Google Sheet.</p>
 
-<p class="note">Fixed anchor: Labyrinth Oct 10&ndash;12 (Minakami Hodaigi). Yakushima weather (typhoon tail) can cancel flights/ferries &mdash; keep a soft day. Day-by-day and budget in the Google Sheet.</p>
+<h2>Day by day</h2>
+<p class="sub" style="margin-bottom:12px">Booked things in the move column are real bookings. Everything from Oct 15 onward is decided but not yet booked.</p>
+<div class="scroll">
+<table class="days">
+<tr>
+  <th>Date</th><th>Move</th><th>Sleep</th><th>What</th>
+</tr>
+<tr>
+  <td class="d">6 Oct<small>Tue</small></td>
+  <td class="mv">AY812 Stockholm &rarr; Helsinki 20:55 (Jonas) &middot; BA429/BA5 Amsterdam &rarr; London &rarr; Tokyo (Eva) &middot; KE926 Amsterdam &rarr; Seoul (Eri)</td>
+  <td class="sl">In the air</td>
+  <td class="wh">Nathanael has been in Japan since Oct 5.</td>
+</tr>
+<tr>
+  <td class="d">7 Oct<small>Wed</small></td>
+  <td class="mv">Arrivals: Eva 10:55 Haneda &middot; Jonas 13:50 Haneda (AY61) &middot; Eri 21:00 Narita</td>
+  <td class="sl">Tokyo</td>
+  <td class="wh">Check-in Hotel Graphy Shibuya 15:00. No plans &mdash; first night is a write-off.</td>
+</tr>
+<tr>
+  <td class="d">8 Oct<small>Thu</small></td>
+  <td class="mv">Metro / on foot</td>
+  <td class="sl">Tokyo</td>
+  <td class="wh">Everyone finally in one room. Gear shopping from 14:00, Shinjuku or Ebisu.</td>
+</tr>
+<tr>
+  <td class="d">9 Oct<small>Fri</small></td>
+  <td class="mv">Metro / on foot</td>
+  <td class="sl">Tokyo</td>
+  <td class="wh">Pack for the festival, confirm tent rental. Mitsuki at night if anyone still has legs.</td>
+</tr>
+<tr class="anchor">
+  <td class="d">10 Oct<small>Sat</small></td>
+  <td class="mv">Labyrinth bus tour from Shibuya Kast, 10:00 &rarr; Minakami</td>
+  <td class="sl">Lodge Sekigahara</td>
+  <td class="wh"><span class="tag p">Anchor</span>Labyrinth day 1. Lodge check-in 14:00.</td>
+</tr>
+<tr class="anchor">
+  <td class="d">11 Oct<small>Sun</small></td>
+  <td class="mv">On site</td>
+  <td class="sl">Lodge Sekigahara</td>
+  <td class="wh"><span class="tag p">Anchor</span>Labyrinth day 2. Onsen shuttle 09:30 and 13:00.</td>
+</tr>
+<tr>
+  <td class="d">12 Oct<small>Mon</small></td>
+  <td class="mv">06:51 Jomo-Kogen &rarr; 10:15 Haneda &middot; NH625 Haneda &rarr; Kagoshima 13:45 &middot; NH4337 &rarr; Yakushima 17:45</td>
+  <td class="sl">Yakushima</td>
+  <td class="wh"><span class="tag x">Transit</span>Twelve hours door to door. Check-in 19:00, eat, sleep.</td>
+</tr>
+<tr>
+  <td class="d">13 Oct<small>Tue</small></td>
+  <td class="mv">Local bus</td>
+  <td class="sl">Yakushima</td>
+  <td class="wh"><span class="tag t">Big hike</span>Shiratani Unsuikyo &rarr; Jomon Sugi. Pre-dawn start, ~10 h round trip.</td>
+</tr>
+<tr>
+  <td class="d">14 Oct<small>Wed</small></td>
+  <td class="mv">Local bus</td>
+  <td class="sl">Yakushima</td>
+  <td class="wh">Smaller hike, or coast and onsen if the legs are done. Keep this soft &mdash; it is the weather buffer.</td>
+</tr>
+<tr>
+  <td class="d">15 Oct<small>Thu</small></td>
+  <td class="mv">Ferry Yakushima &rarr; Kagoshima 10:00&ndash;13:00 (~&euro;75 pp)</td>
+  <td class="sl">Kagoshima</td>
+  <td class="wh">Sakurajima in the afternoon. Night in the city.</td>
+</tr>
+<tr>
+  <td class="d">16 Oct<small>Fri</small></td>
+  <td class="mv">Shinkansen Kagoshima &rarr; Kumamoto, ~50 min (~&euro;40 pp)</td>
+  <td class="sl">Kumamoto</td>
+  <td class="wh">Eri's house. Kumamoto castle and the city if anyone gets restless. The one genuinely slow day of the trip.</td>
+</tr>
+<tr>
+  <td class="d">17 Oct<small>Sat</small></td>
+  <td class="mv">Kumamoto &rarr; Okayama direct, Mizuho / Sakura, ~2 h 20, no transfer</td>
+  <td class="sl">Okayama</td>
+  <td class="wh"><span class="tag s">Split</span>Jonas goes straight through. Hiroshima and Itsukushima are an optional detour off the same line &mdash; everyone still sleeps in Okayama.</td>
+</tr>
+<tr>
+  <td class="d">18 Oct<small>Sun</small></td>
+  <td class="mv">Okayama &rarr; Uno &rarr; ferry to Naoshima, and back the same way</td>
+  <td class="sl">Okayama</td>
+  <td class="wh"><span class="tag c">Art island</span>Chichu and Benesse House need tickets booked ahead. Monday is closed &mdash; Sunday is the right day.</td>
+</tr>
+<tr>
+  <td class="d">19 Oct<small>Mon</small></td>
+  <td class="mv">Shinkansen Okayama &rarr; Kyoto, ~1 h</td>
+  <td class="sl">Kyoto</td>
+  <td class="wh">Go early &mdash; there is nothing left in Okayama and this buys an extra Kyoto afternoon.</td>
+</tr>
+<tr>
+  <td class="d">20 Oct<small>Tue</small></td>
+  <td class="mv">Everyone: full day in Kyoto &middot; Jonas only: Kyoto &rarr; Tokyo ~2 h 20, on a train by 18:00</td>
+  <td class="sl">Kyoto<br><small style="font-weight:400;color:var(--muted)">Jonas: Tokyo</small></td>
+  <td class="wh"><span class="tag s">Split</span>A full Kyoto day for everyone. Jonas peels off in the evening because the 07:50 cannot be reached from Kyoto in the morning &mdash; sleep near Haneda, Kamata or Shinagawa.</td>
+</tr>
+<tr class="anchor">
+  <td class="d">21 Oct<small>Wed</small></td>
+  <td class="mv">Jonas 04:30 to the airport, AY5072 Haneda &rarr; Helsinki 07:50 &middot; Eri Kyoto &rarr; Narita for 20:45</td>
+  <td class="sl">&mdash;</td>
+  <td class="wh"><span class="tag x">Out</span>Kyoto to Narita is ~3 h 15 via Tokyo, so Eri gets a slow morning and still makes it. Eva and Nathanael stay in Kyoto.</td>
+</tr>
+<tr>
+  <td class="d">22 Oct<small>Thu</small></td>
+  <td class="mv">&mdash;</td>
+  <td class="sl">Japan</td>
+  <td class="wh">Eva stays to Oct 24 (AY62, 21:50). Nathanael carries on alone until Nov 2.</td>
+</tr>
+</table>
+</div>
+
+<h2>The route on a map</h2>
+<p class="sub" style="margin-bottom:12px">Solid = train or bus, dotted = ferry, dashed blue = flight. The grey dashed loop through Hiroshima is the optional Oct 17 detour.</p>
+<div id="map" style="height:480px;border:1px solid var(--line);border-radius:4px"></div>
+
+<h2>Money</h2>
+<p class="sub" style="margin-bottom:12px">Per person. International flights not included.</p>
+
+<div style="max-width:600px">
+  <div class="brow" style="border-bottom:1px solid var(--line);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600;padding-bottom:6px">
+    <span class="bcat">Already booked and paid</span><span class="bbar"></span><span class="bamt">pp</span>
+  </div>
+  <div class="brow"><span class="bcat">Tokyo, Oct 7&ndash;10 <small>&yen;82,044</small></span><span class="bbar"><i style="width:51%"></i></span><span class="bamt">&euro;111</span></div>
+  <div class="brow"><span class="bcat">Labyrinth tickets <small>&yen;113,940</small></span><span class="bbar"><i style="width:71%"></i></span><span class="bamt">&euro;155</span></div>
+  <div class="brow"><span class="bcat">Labyrinth bus <small>&yen;40,000</small></span><span class="bbar"><i style="width:25%"></i></span><span class="bamt">&euro;54</span></div>
+  <div class="brow"><span class="bcat">Lodge Sekigahara <small>&yen;72,000</small></span><span class="bbar"><i style="width:45%"></i></span><span class="bamt">&euro;98</span></div>
+  <div class="brow"><span class="bcat">Haneda &rarr; Yakushima flights <small>&yen;161,080</small></span><span class="bbar"><i style="width:100%"></i></span><span class="bamt">&euro;218</span></div>
+  <div class="brow tot"><span class="bcat">Booked so far</span><span class="bbar"></span><span class="bamt">&euro;636</span></div>
+</div>
+
+<div style="max-width:600px;margin-top:22px">
+  <div class="brow" style="border-bottom:1px solid var(--line);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600;padding-bottom:6px">
+    <span class="bcat">Still to come, estimate</span><span class="bbar"></span><span class="bamt">pp</span>
+  </div>
+  <div class="brow"><span class="bcat">Food &amp; drink <small>~14 days</small></span><span class="bbar"><i class="est" style="width:100%"></i></span><span class="bamt">&euro;560</span></div>
+  <div class="brow"><span class="bcat">Lodging <small>9 nights, twin-share</small></span><span class="bbar"><i class="est" style="width:79%"></i></span><span class="bamt">&euro;440</span></div>
+  <div class="brow"><span class="bcat">Trains &amp; ferries <small>Yakushima onward</small></span><span class="bbar"><i class="est" style="width:70%"></i></span><span class="bamt">&euro;390</span></div>
+  <div class="brow"><span class="bcat">Entries <small>Naoshima, Kyoto temples</small></span><span class="bbar"><i class="est" style="width:21%"></i></span><span class="bamt">&euro;120</span></div>
+  <div class="brow"><span class="bcat">Buffer</span><span class="bbar"><i class="est" style="width:18%"></i></span><span class="bamt">&euro;100</span></div>
+  <div class="brow tot"><span class="bcat">Still to come</span><span class="bbar"></span><span class="bamt">&euro;1,610</span></div>
+</div>
+
+<p class="sub" style="margin-top:14px"><b style="color:var(--ink)">In-Japan total &asymp; &euro;2,250 / person</b> &middot; group of 4 &asymp; &euro;9,000 &middot; about &euro;150 / person / day. Booked figures come straight from the expenses sheet; the rest is a guess and will move. Full breakdown lives in the Google Sheet.</p>
+
+<p class="note">
+<b>Fixed anchors:</b> Labyrinth Oct 10&ndash;12 (Minakami Hodaigi), the Haneda&ndash;Kagoshima&ndash;Yakushima flights on Oct 12, and Jonas' 07:50 departure on Oct 21.<br>
+<b>Where it splits:</b> Oct 17. Kumamoto to Okayama is one direct train, ~2 h 20. Hiroshima and Itsukushima sit on that same line as an optional detour &mdash; Jonas is skipping it, everyone else decides for themselves. Same bed in Okayama either way.<br>
+<b>The 20th:</b> Jonas cannot leave Kyoto on the morning of the 21st &mdash; the first Nozomi out is ~06:15 and reaches Tokyo ~08:25, half an hour after the plane. An evening train on the 20th is the only safe version, and not the last one: be on something by 18:00 so there are still trains behind you if one is cancelled.<br>
+<b>Watch:</b> Yakushima weather (typhoon tail) can cancel the Oct 15 ferry &mdash; Oct 14 is the buffer to burn. Naoshima museums are shut on Mondays and want advance tickets.
+</p>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -134,20 +296,24 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:18}).addTo(map);
 
+  var TOKYO=[35.68,139.76], MINAKAMI=[36.80,139.00], YAKU=[30.36,130.53], KAGO=[31.60,130.56],
+      KUMA=[32.80,130.71], HIRO=[34.39,132.46], OKA=[34.66,133.92], NAO=[34.46,133.99],
+      KANSAI=[34.85,135.60], TOKYO2=[35.60,139.90];
+
   var stops = [
-    {n:1, name:'Tokyo',         sub:'Arrive (Oct 8&ndash;9) + finale',   ll:[35.68,139.76], c:'#3f6fb0'},
-    {n:2, name:'Minakami',      sub:'Labyrinth festival (Oct 10&ndash;12)', ll:[36.80,139.00], c:'#a83c8f'},
-    {n:3, name:'Yakushima',     sub:'Fly down, decompress + hike',       ll:[30.36,130.53], c:'#2f8a4e'},
-    {n:4, name:'Amakusa',       sub:'Amakusa / Fukuoka',                 ll:[32.45,130.19], c:'#c29a3a'},
-    {n:5, name:'Fukuoka',       sub:'Ferry from Amakusa',                ll:[33.59,130.40], c:'#c29a3a'},
-    {n:6, name:'Hiroshima',     sub:'Peace Park + Miyajima',             ll:[34.39,132.46], c:'#c29a3a'},
-    {n:7, name:'Naoshima',      sub:'Art island (train + ferry)',        ll:[34.46,133.99], c:'#c29a3a'},
-    {n:8, name:'Osaka / Kyoto', sub:'Kansai',                            ll:[34.69,135.50], c:'#c29a3a'},
-    {n:9, name:'Tokyo',         sub:'Finale (bullet train)',             ll:[35.60,139.90], c:'#3f6fb0'}
+    {n:1, name:'Tokyo',         sub:'Oct 7&ndash;9, Graphy Shibuya',        ll:TOKYO,   c:'#3f6fb0'},
+    {n:2, name:'Minakami',      sub:'Oct 10&ndash;11, Labyrinth',           ll:MINAKAMI,c:'#a83c8f'},
+    {n:3, name:'Yakushima',     sub:'Oct 12&ndash;14, Jomon Sugi hike',     ll:YAKU,    c:'#2f8a4e'},
+    {n:4, name:'Kagoshima',     sub:'Oct 15, ferry in + Sakurajima',        ll:KAGO,    c:'#c29a3a'},
+    {n:5, name:'Kumamoto',      sub:"Oct 16, Eri's house, slow day",        ll:KUMA,    c:'#c29a3a'},
+    {n:6, name:'Okayama',       sub:'Oct 17&ndash;18, base for two nights', ll:OKA,     c:'#c29a3a'},
+    {n:7, name:'Naoshima',      sub:'Oct 18, art island day trip',          ll:NAO,     c:'#c29a3a'},
+    {n:8, name:'Kyoto',         sub:'Oct 19&ndash;20, two nights',           ll:KANSAI,  c:'#c29a3a'},
+    {n:9, name:'Tokyo',         sub:'Oct 20, Jonas only &mdash; 07:50 flight', ll:TOKYO2,  c:'#3f6fb0'}
   ];
   function icon(n,c){
     return L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13],
-      html:'<div style="background:'+c+';color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 12px sans-serif;border:2px solid #fff">'+n+'</div>'});
+      html:'<div style="background:'+c+';color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 11px sans-serif;border:2px solid #fff">'+n+'</div>'});
   }
   var pts=[];
   stops.forEach(function(s){
@@ -157,17 +323,29 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 
   var ground = {color:'#333', weight:3, opacity:.85};
   var air    = {color:'#3f6fb0', weight:2, opacity:.85, dashArray:'6,7'};
+  var sea    = {color:'#3f6fb0', weight:2, opacity:.85, dashArray:'1,6', lineCap:'round'};
   var legs = [
-    {a:[35.68,139.76], b:[36.80,139.00], m:ground},
-    {a:[36.80,139.00], b:[30.36,130.53], m:air},
-    {a:[30.36,130.53], b:[32.45,130.19], m:air},
-    {a:[32.45,130.19], b:[33.59,130.40], m:ground},
-    {a:[33.59,130.40], b:[34.39,132.46], m:ground},
-    {a:[34.39,132.46], b:[34.46,133.99], m:ground},
-    {a:[34.46,133.99], b:[34.69,135.50], m:ground},
-    {a:[34.69,135.50], b:[35.60,139.90], m:ground}
+    {a:TOKYO,    b:MINAKAMI, m:ground},  // shinkansen + bus
+    {a:MINAKAMI, b:TOKYO,    m:ground},  // back to Haneda
+    {a:TOKYO,    b:KAGO,     m:air},     // NH625
+    {a:KAGO,     b:YAKU,     m:air},     // NH4337
+    {a:YAKU,     b:KAGO,     m:sea},     // ferry back
+    {a:KAGO,     b:KUMA,     m:ground},
+    {a:KUMA,     b:OKA,      m:ground},  // direct Mizuho / Sakura
+    {a:OKA,      b:NAO,      m:sea},     // Uno ferry
+    {a:NAO,      b:OKA,      m:sea},
+    {a:OKA,      b:KANSAI,   m:ground},
+    {a:KANSAI,   b:TOKYO2,   m:ground}
   ];
   legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
+
+  // optional detour: whoever wants Hiroshima + Itsukushima on the 17th
+  var opt = {color:'#9a9a9a', weight:2, opacity:.8, dashArray:'4,5'};
+  L.polyline([KUMA, HIRO], opt).addTo(map);
+  L.polyline([HIRO, OKA],  opt).addTo(map);
+  L.marker(HIRO, {icon: L.divIcon({className:'', iconSize:[16,16], iconAnchor:[8,8],
+    html:'<div style="background:#fff;border:2px dashed #9a9a9a;width:16px;height:16px;border-radius:50%"></div>'})})
+   .addTo(map).bindPopup('<b>Hiroshima / Itsukushima</b><br>Optional detour on Oct 17, not everyone.');
   map.fitBounds(L.latLngBounds(pts).pad(0.18));
 })();
 </script>

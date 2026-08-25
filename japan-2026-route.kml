@@ -1,36 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>Japan 2026 — festival + rough hiking loop</name>
-  <description>4 pax. Oct 8-25 2026. Numbered in trip order. Solid = ground, dashed(blue) = flight.</description>
+  <name>Japan 2026 — the plan</name>
+  <description>4 pax. Oct 6-21 2026. Numbered in trip order. Solid = train/bus, dashed = flight, dotted = ferry, grey dashed = optional Oct 17 detour.</description>
 
   <Style id="ground"><LineStyle><color>ff333333</color><width>4</width></LineStyle></Style>
   <Style id="air"><LineStyle><color>ffb06f3f</color><width>3</width></LineStyle></Style>
+  <Style id="sea"><LineStyle><color>ffb06f3f</color><width>2</width></LineStyle></Style>
+  <Style id="opt"><LineStyle><color>ff9a9a9a</color><width>2</width></LineStyle></Style>
   <Style id="stop"><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
 
   <Placemark><name>1. Tokyo</name><styleUrl>#stop</styleUrl>
-    <description>Oct 8-9 arrival (2 easing-in days) + Oct 23-25 finale</description>
+    <description>Oct 7-9 arrival, Hotel Graphy Shibuya. Also Oct 20 last night.</description>
     <Point><coordinates>139.7600,35.6800,0</coordinates></Point></Placemark>
   <Placemark><name>2. Minakami (Gunma)</name><styleUrl>#stop</styleUrl>
-    <description>Oct 10-12 Labyrinth festival + rafting/canyoning + Tanigawa-dake</description>
+    <description>Oct 10-11 Labyrinth festival, Lodge Sekigahara. Fixed anchor.</description>
     <Point><coordinates>139.0000,36.8000,0</coordinates></Point></Placemark>
-  <Placemark><name>3. Kumano Kodo (Takijiri-Hongu)</name><styleUrl>#stop</styleUrl>
-    <description>Oct 14-16 Nakahechi onsen-to-onsen trek</description>
-    <Point><coordinates>135.7700,33.8400,0</coordinates></Point></Placemark>
+  <Placemark><name>3. Yakushima</name><styleUrl>#stop</styleUrl>
+    <description>Oct 12-14. Shiratani Unsuikyo to Jomon Sugi on the 13th, soft day on the 14th.</description>
+    <Point><coordinates>130.5300,30.3600,0</coordinates></Point></Placemark>
   <Placemark><name>4. Kagoshima</name><styleUrl>#stop</styleUrl>
-    <description>Gateway to Yakushima + Kaimon-dake volcano day (Oct 22)</description>
+    <description>Oct 15. Ferry in from Yakushima, Sakurajima in the afternoon.</description>
     <Point><coordinates>130.5600,31.6000,0</coordinates></Point></Placemark>
-  <Placemark><name>5. Yakushima</name><styleUrl>#stop</styleUrl>
-    <description>Oct 19-20 Shiratani -> Jomon Sugi -> Miyanoura-dake traverse</description>
-    <Point><coordinates>130.5000,30.4300,0</coordinates></Point></Placemark>
+  <Placemark><name>5. Kumamoto</name><styleUrl>#stop</styleUrl>
+    <description>Oct 16. Eri's house. The slow day.</description>
+    <Point><coordinates>130.7100,32.8000,0</coordinates></Point></Placemark>
+  <Placemark><name>Optional: Hiroshima / Itsukushima</name><styleUrl>#stop</styleUrl>
+    <description>Oct 17 detour off the Kumamoto-Okayama line. Not everyone - decide per person.</description>
+    <Point><coordinates>132.4600,34.3900,0</coordinates></Point></Placemark>
+  <Placemark><name>6. Okayama</name><styleUrl>#stop</styleUrl>
+    <description>Oct 17-18. Base for two nights.</description>
+    <Point><coordinates>133.9200,34.6600,0</coordinates></Point></Placemark>
+  <Placemark><name>7. Naoshima</name><styleUrl>#stop</styleUrl>
+    <description>Oct 18 day trip via Uno. Museums shut on Mondays.</description>
+    <Point><coordinates>133.9900,34.4600,0</coordinates></Point></Placemark>
+  <Placemark><name>8. Kyoto</name><styleUrl>#stop</styleUrl>
+    <description>Oct 19-20. Two nights. Jonas leaves on the evening of the 20th for his 07:50 flight.</description>
+    <Point><coordinates>135.6000,34.8500,0</coordinates></Point></Placemark>
 
-  <Placemark><name>Ground: Tokyo - Minakami - Kumano (train)</name><styleUrl>#ground</styleUrl>
+  <Placemark><name>Ground: trains and buses</name><styleUrl>#ground</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
-      139.7600,35.6800,0 139.0000,36.8000,0 139.7600,35.6800,0 135.7700,33.8400,0
+      139.7600,35.6800,0 139.0000,36.8000,0 139.7600,35.6800,0
     </coordinates></LineString></Placemark>
-  <Placemark><name>Air: Kumano - Kagoshima - Yakushima - Tokyo (flights)</name><styleUrl>#air</styleUrl>
+  <Placemark><name>Air: Haneda - Kagoshima - Yakushima (Oct 12) + fly out</name><styleUrl>#air</styleUrl>
     <LineString><tessellate>1</tessellate><coordinates>
-      135.7700,33.8400,0 130.5600,31.6000,0 130.5000,30.4300,0 130.5600,31.6000,0 139.7600,35.6800,0
+      139.7600,35.6800,0 130.5600,31.6000,0 130.5300,30.3600,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Sea: Yakushima - Kagoshima ferry (Oct 15)</name><styleUrl>#sea</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      130.5300,30.3600,0 130.5600,31.6000,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Ground: Kagoshima - Kumamoto - Okayama - Kansai - Tokyo</name><styleUrl>#ground</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      130.5600,31.6000,0 130.7100,32.8000,0 133.9200,34.6600,0 135.6000,34.8500,0 139.7600,35.6800,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Optional: Kumamoto - Hiroshima - Okayama (Oct 17)</name><styleUrl>#opt</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      130.7100,32.8000,0 132.4600,34.3900,0 133.9200,34.6600,0
+    </coordinates></LineString></Placemark>
+  <Placemark><name>Sea: Uno - Naoshima day trip (Oct 18)</name><styleUrl>#sea</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      133.9200,34.6600,0 133.9900,34.4600,0 133.9200,34.6600,0
     </coordinates></LineString></Placemark>
 
 </Document>
