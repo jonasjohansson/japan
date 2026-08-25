@@ -8,7 +8,7 @@
 :root{
   --bg:#ffffff; --ink:#1c1c1c; --muted:#6b6b6b; --line:#d9d9d9; --line2:#efefef;
   --city:#3f6fb0; --party:#a83c8f; --trek:#2f8a4e; --culture:#c29a3a; --travel:#b3b3b3;
-  --col:68px; --label:150px;
+  --col:68px; --label:150px; --we:#faf6f0; --person:#4a5568;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -25,14 +25,29 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 .date{text-align:center;padding:5px 0 6px;border-bottom:1px solid var(--line)}
 .date .n{font-weight:700;font-size:13px}
 .date .d{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.date.we{background:var(--we)}
 .date.we .n{color:#b64a34}
+/* day gridlines + weekend tint, positions fixed to --col:68px */
+.daysbg{background-image:
+  linear-gradient(to right, transparent 0 272px, var(--we) 272px 408px, transparent 408px 748px, var(--we) 748px 884px, transparent 884px),
+  repeating-linear-gradient(to right, var(--line2) 0 1px, transparent 1px 68px)}
+.sechead{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
+  font-weight:600;text-align:right;padding:16px 12px 5px 0;align-self:end}
+.sechead-sp{padding-top:16px}
+.prow{position:relative;height:30px;border-bottom:1px solid var(--line2)}
+.pbar{position:absolute;top:6px;height:18px;background:var(--person);color:#fff;border-radius:9px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 9px;
+  font-size:10px;white-space:nowrap;overflow:hidden}
+.pbar.oR{border-radius:9px 0 0 9px}
+.pbar.oLR{border-radius:0}
+.pbar em{font-style:normal;opacity:.72}
 .track{position:relative;height:52px;border-bottom:1px solid var(--line2)}
 .seg{position:absolute;top:6px;height:40px;color:#fff;padding:5px 7px;font-size:11px;
   line-height:1.15;overflow:hidden;display:flex;flex-direction:column;justify-content:center;border-radius:2px}
 .seg b{font-size:11px;font-weight:700;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .seg span{font-size:10px;opacity:.92;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
-.seg.peel{top:28px;height:24px;z-index:2;box-shadow:0 -1px 0 #fff;padding:3px 4px}
-.seg.peel b{font-size:9px;letter-spacing:-.1px}
+.seg.peel{top:26px;height:26px;z-index:2;box-shadow:0 -1px 0 #fff;padding:2px 4px;line-height:1.1}
+.seg.peel b{font-size:9px;letter-spacing:-.1px} .seg.peel span{font-size:8px}
 .seg.n{padding:5px 4px}
 .seg.n b{font-size:10px} .seg.n span{font-size:9px}
 .city{background:var(--city)} .party{background:var(--party)} .trek{background:var(--trek)}
@@ -103,7 +118,7 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
   <div class="date"><div class="n">22</div><div class="d">Thu</div></div>
 
   <div class="rowlabel">Where we sleep<small>base each night</small></div>
-  <div class="track" style="grid-column:2 / span 17">
+  <div class="track daysbg" style="grid-column:2 / span 17">
     <div class="seg travel n"  style="left:0;width:64px">    <b>In the air</b><span>3 routes</span></div>
     <div class="seg city"      style="left:68px;width:200px"><b>Tokyo</b><span>Graphy Shibuya</span></div>
     <div class="seg party"     style="left:272px;width:132px"><b>Labyrinth</b><span>Minakami</span></div>
@@ -113,13 +128,37 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
     <div class="seg culture n" style="left:680px;width:64px"> <b>Kumamoto</b><span>Eri's</span></div>
     <div class="seg culture"   style="left:748px;width:132px"><b>Okayama</b><span>Naoshima day trip</span></div>
     <div class="seg culture"   style="left:884px;width:132px"><b>Kyoto</b><span>two nights</span></div>
-    <div class="seg city n peel" style="left:952px;width:64px"><b>Jonas &rarr; Tokyo</b></div>
+    <div class="seg city n peel" style="left:952px;width:64px"><b>Jonas</b><span>&rarr; Tokyo</span></div>
     <div class="seg travel n"  style="left:1020px;width:64px"><b>Fly out</b><span>07:50</span></div>
     <div class="seg travel n"  style="left:1088px;width:64px"><b>Eva+Nate</b><span>stay on</span></div>
   </div>
 
+  <div class="sechead">Who is in Japan</div>
+  <div class="sechead-sp" style="grid-column:2 / span 17"></div>
+
+  <div class="rowlabel">Jonas<small>from Stockholm</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17">
+    <div class="pbar" style="left:107px;width:935px"><span>7 Oct <em>13:50, Haneda</em></span><span>21 Oct <em>07:50</em></span></div>
+  </div>
+
+  <div class="rowlabel">Eri<small>via Seoul</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17">
+    <div class="pbar" style="left:128px;width:951px"><span>7 Oct <em>21:00, Narita</em></span><span>21 Oct <em>20:45</em></span></div>
+  </div>
+
+  <div class="rowlabel">Eva<small>via London</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17">
+    <div class="pbar oR" style="left:99px;width:1057px"><span>7 Oct <em>10:55, Haneda</em></span><span><em>stays to 24 Oct</em> &rsaquo;</span></div>
+  </div>
+
+  <div class="rowlabel">Nathanael<small>already there</small></div>
+  <div class="prow daysbg" style="grid-column:2 / span 17">
+    <div class="pbar oLR" style="left:0;width:1156px"><span>&lsaquo; <em>landed 5 Oct</em></span><span><em>stays to 2 Nov</em> &rsaquo;</span></div>
+  </div>
+
 </div>
 </div>
+<p class="sub" style="margin:8px 0 0">Bars start at the actual landing time, so you can see the 7th fill up: Eva 10:55, Jonas 13:50, Eri 21:00. All four are only in the same place from the evening of Oct 7 to the morning of Oct 21 &mdash; 13 days.</p>
 
 <div class="legend">
   <span><i class="dot" style="background:var(--city)"></i>Tokyo</span>
