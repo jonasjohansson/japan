@@ -93,3 +93,25 @@ The day-by-day table, the map, the money block and the prose sections are untouc
 - The `.daysbg` weekend tint is built from `calc(n * var(--col))` stops and must convert cleanly to percentages or the weekend shading will drift off the gridlines.
 - Four person rows for thirteen identical days is more ink than one sleep row. That redundancy is the message — "we are together" — but if it reads as noise at implementation time, the fallback is to mute the shared-base cells and let only the branch colours saturate.
 - Removing "Locked in" assumes the table's highlighted anchor rows are prominent enough. Verify at render.
+
+---
+
+## What changed during implementation
+
+Recorded after the fact, 2026-08-25.
+
+- **The branch strip names the place, not the person.** `Eri: Ise` overflowed the one-day Kyoto cell. Since the legend already reads "Eri, at Ise" and "Jonas, in Tokyo", the strip says only `Ise` and `Tokyo` and lets colour carry who.
+- **One-day base cells put the number on top and the name underneath.** `<i>4</i>Kagoshima` on one line still truncated at ~48px. Two lines fit, and the band grew 52px → 58px so a split one-day cell holds number, name and branch strip.
+- **Day-row stop names wrap to two lines** instead of ellipsising. `Kumamoto` and `Naoshima` do not fit one line in a one-day column; the row grew to 86px.
+- **Arrival and departure times moved into the person cells** — `13:50` in Jonas' Oct 7 cell, `07:50` in his Oct 21 cell.
+- **The legend kept a hatch swatch**, repurposed from "not all four" to "still here after the 22nd", so it is 8 entries rather than the 7 predicted.
+
+## Known loss
+
+The old `.pbar` positioned each traveller's bar at their *fractional* landing time (`--s:1.574` for Jonas' 13:50), so the Oct 7 arrival stagger was visible as three bars starting at three points inside one column. A cell grid cannot express sub-day precision. The times are now text inside the arrival cell and are also in the caption and the day-by-day table, but the *visual* stagger is gone. This was a real, if small, cost of the change.
+
+## Risks that did not materialise
+
+- The `.daysbg` weekend tint converted cleanly to percentages; shading still lands exactly on Oct 10–11 and Oct 17–18.
+- Four rows of near-identical colour did **not** read as noise, so the muting fallback was not needed.
+- `--hatch` is built from `var(--bg)`, so every new class inherits dark mode with no extra work.
