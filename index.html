@@ -51,6 +51,9 @@ h2{font-size:16px;margin:36px 0 3px;font-weight:700}
 .seg span{font-size:10px;opacity:.92;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .seg.peel{top:26px;height:26px;z-index:2;box-shadow:0 -1px 0 #fff;padding:2px 4px;line-height:1.1}
 .seg.peel b{font-size:9px;letter-spacing:-.1px} .seg.peel span{font-size:8px}
+/* a daytime stop, not a bed: thin strip along the bottom of the block */
+.seg.strip{top:38px;height:14px;padding:0 5px;line-height:14px;font-size:8px;font-weight:700;
+  border-radius:2px 2px 0 0;z-index:2;box-shadow:0 -1px 0 #fff;display:block;white-space:nowrap}
 .seg.n{padding:5px 4px}
 .seg.n b{font-size:10px} .seg.n span{font-size:9px}
 .city{background:var(--city)} .party{background:var(--party)} .trek{background:var(--trek)}
@@ -137,6 +140,7 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
     <div class="seg culture n" style="left:612px;width:64px"> <b>Kagoshima</b><span>Sakurajima</span></div>
     <div class="seg culture n" style="left:680px;width:64px"> <b>Kumamoto</b><span>Eri's</span></div>
     <div class="seg culture"   style="left:748px;width:132px"><b>Okayama</b><span>Naoshima day trip</span></div>
+    <div class="seg travel strip" style="left:748px;width:64px">Fukuoka pm</div>
     <div class="seg culture"   style="left:884px;width:132px"><b>Kyoto</b><span>two nights</span></div>
     <div class="seg city peel" style="left:884px;width:132px"><b>Jonas &rarr; Tokyo</b><span>two nights, no train to catch</span></div>
     <div class="seg travel n"  style="left:1020px;width:64px"><b>Fly out</b><span>07:50</span></div>
@@ -263,15 +267,15 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
 </tr>
 <tr>
   <td class="d">17 Oct<small>Sat</small></td>
-  <td class="mv">Kumamoto &rarr; Okayama direct, Mizuho / Sakura, ~2 h 20, no transfer</td>
+  <td class="mv">Kumamoto &rarr; Hakata, 40 min &middot; the afternoon in Fukuoka &middot; a train near 20:00 on to Okayama, ~1 h 45</td>
   <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Tokyo</small></td>
-  <td class="wh"><span class="tag s">Splits</span>Jonas goes straight through; Hiroshima and Itsukushima are an optional detour off the same line. Eri peels off at Hakata for Tokyo &mdash; Fukuoka airport is five minutes from the station, so she can be at Haneda by early afternoon.</td>
+  <td class="wh"><span class="tag s">Pick one</span>One stop fits between Kumamoto and Okayama, not two. <b>Fukuoka:</b> bags into the Hakata lockers, the afternoon in town, and the Nakasu yatai when they open around 18:00 &mdash; that is the whole reason to stop. <b>Or Hiroshima and Itsukushima</b>, which means an earlier run through and no yatai. Jonas is taking the yatai. Eri peels off at Hakata either way &mdash; the airport is five minutes from the station, so she can be at Haneda by early afternoon.</td>
 </tr>
 <tr>
   <td class="d">18 Oct<small>Sun</small></td>
   <td class="mv">Okayama &rarr; Uno &rarr; ferry to Naoshima, and back the same way</td>
   <td class="sl">Okayama<br><small style="font-weight:400;color:var(--muted)">Eri: Tokyo</small></td>
-  <td class="wh"><span class="tag c">Art island</span>Eri is in Tokyo. For everyone else: Chichu is timed-entry and sells out &mdash; reserve now. Bikes at Miyanoura are the way round the island. Monday is closed so Sunday is right, and therefore busy. Watch the last ferry back to Uno.</td>
+  <td class="wh"><span class="tag c">Art island</span>Eri is in Tokyo. For everyone else: after a yatai night, do not book the first ferry. Chichu is timed-entry and sells out &mdash; reserve now. Bikes at Miyanoura are the way round the island. Monday is closed so Sunday is right, and therefore busy. Watch the last ferry back to Uno.</td>
 </tr>
 <tr>
   <td class="d">19 Oct<small>Mon</small></td>
@@ -307,12 +311,12 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
   <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Yakushima, 3 nights (12&ndash;14)</b><span>Small island, few beds. You specifically want somewhere that will do a 04:00 breakfast and a packed lunch for the Jomon Sugi day.</span></div></div>
   <div class="bitem"><div class="bwhen now">Do first</div><div class="btxt"><b>Chichu Art Museum, 18 Oct</b><span>Timed online reservation only, and Sunday is Naoshima's busiest day.</span></div></div>
   <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Kagoshima 15th, Okayama 17th&ndash;18th, Tokyo 19th&ndash;20th</b><span>Business hotels, much easier &mdash; but the 17th and 18th are a Saturday and Sunday. Jonas needs two Tokyo nights now, the second one Haneda-side.</span></div></div>
-  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Reserve two trains</b><span>The Kumamoto&ndash;Okayama Sakura on the 17th, and Jonas&rsquo; Okayama&ndash;Tokyo on the 19th. The rest can be bought as you go.</span></div></div>
+  <div class="bitem"><div class="bwhen">Soon</div><div class="btxt"><b>Reserve two trains</b><span>The Hakata&ndash;Okayama leg on the evening of the 17th &mdash; check the last departures before committing to a yatai dinner &mdash; and Jonas&rsquo; Okayama&ndash;Tokyo on the 19th.</span></div></div>
   <div class="bitem"><div class="bwhen">On the day</div><div class="btxt"><b>Arakawa shuttle ticket</b><span>Bought on Yakushima the day before the hike, not online. Easy to forget until 04:00 on the 13th.</span></div></div>
 </div>
 
 <h2>The route on a map</h2>
-<p class="sub" style="margin-bottom:12px">Solid = train or bus, dotted = ferry, dashed blue = flight. Grey = the optional Oct 17 Hiroshima detour. Violet = Eri, up to Tokyo on the 17th and back to Kyoto on the 19th. Rust = Jonas, skipping Kansai for Tokyo on the 19th.</p>
+<p class="sub" style="margin-bottom:12px">Solid = train or bus, dotted = ferry, dashed blue = flight. Grey = Hiroshima, the alternative to Fukuoka on the 17th. Violet = Eri, up to Tokyo on the 17th and back to Kyoto on the 19th. Rust = Jonas, skipping Kansai for Tokyo on the 19th.</p>
 <div id="map" style="height:480px;border:1px solid var(--line);border-radius:4px"></div>
 
 <h2>Money</h2>
@@ -369,7 +373,7 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
 
   var TOKYO=[35.68,139.76], MINAKAMI=[36.80,139.00], YAKU=[30.36,130.53], KAGO=[31.60,130.56],
       KUMA=[32.80,130.71], HIRO=[34.39,132.46], OKA=[34.66,133.92], NAO=[34.46,133.99],
-      KANSAI=[34.85,135.60], TOKYO2=[35.60,139.90];
+      KANSAI=[34.85,135.60], TOKYO2=[35.60,139.90], HAKATA=[33.59,130.42];
 
   var stops = [
     {n:1, name:'Tokyo',         sub:'Oct 7&ndash;9, Graphy Shibuya',        ll:TOKYO,   c:'#3f6fb0'},
@@ -377,10 +381,11 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
     {n:3, name:'Yakushima',     sub:'Oct 12&ndash;14, Jomon Sugi hike',     ll:YAKU,    c:'#2f8a4e'},
     {n:4, name:'Kagoshima',     sub:'Oct 15, ferry in + Sakurajima',        ll:KAGO,    c:'#c29a3a'},
     {n:5, name:'Kumamoto',      sub:"Oct 16, Eri's house, slow day",        ll:KUMA,    c:'#c29a3a'},
-    {n:6, name:'Okayama',       sub:'Oct 17&ndash;18, base for two nights', ll:OKA,     c:'#c29a3a'},
-    {n:7, name:'Naoshima',      sub:'Oct 18, art island day trip',          ll:NAO,     c:'#c29a3a'},
-    {n:8, name:'Kyoto',         sub:'Oct 19&ndash;20, without Jonas',        ll:KANSAI,  c:'#c29a3a'},
-    {n:9, name:'Tokyo',         sub:'Jonas from the 19th; everyone eventually', ll:TOKYO2,  c:'#3f6fb0'}
+    {n:6, name:'Fukuoka',       sub:'Oct 17 afternoon, yatai at Nakasu',    ll:HAKATA,  c:'#c29a3a'},
+    {n:7, name:'Okayama',       sub:'Oct 17&ndash;18, base for two nights', ll:OKA,     c:'#c29a3a'},
+    {n:8, name:'Naoshima',      sub:'Oct 18, art island day trip',          ll:NAO,     c:'#c29a3a'},
+    {n:9, name:'Kyoto',         sub:'Oct 19&ndash;20, without Jonas',        ll:KANSAI,  c:'#c29a3a'},
+    {n:10,name:'Tokyo',         sub:'Jonas from the 19th; everyone eventually', ll:TOKYO2,  c:'#3f6fb0'}
   ];
   function icon(n,c){
     return L.divIcon({className:'', iconSize:[26,26], iconAnchor:[13,13],
@@ -402,7 +407,8 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
     {a:KAGO,     b:YAKU,     m:air},     // NH4337
     {a:YAKU,     b:KAGO,     m:sea},     // ferry back
     {a:KAGO,     b:KUMA,     m:ground},
-    {a:KUMA,     b:OKA,      m:ground},  // direct Mizuho / Sakura
+    {a:KUMA,     b:HAKATA,   m:ground},  // 40 min, then the afternoon in Fukuoka
+    {a:HAKATA,   b:OKA,      m:ground},  // ~20:00 train, Okayama before 22:00
     {a:OKA,      b:NAO,      m:sea},     // Uno ferry
     {a:NAO,      b:OKA,      m:sea},
     {a:OKA,      b:KANSAI,   m:ground},
@@ -410,9 +416,9 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
   ];
   legs.forEach(function(l){ L.polyline([l.a,l.b], l.m).addTo(map); });
 
-  // optional detour: whoever wants Hiroshima + Itsukushima on the 17th
+  // the alternative to Fukuoka on the 17th - one stop fits, not two
   var opt = {color:'#9a9a9a', weight:2, opacity:.8, dashArray:'4,5'};
-  L.polyline([KUMA, HIRO], opt).addTo(map);
+  L.polyline([HAKATA, HIRO], opt).addTo(map);
   L.polyline([HIRO, OKA],  opt).addTo(map);
 
   // Jonas: skips Kansai, straight from Okayama to Tokyo on the 19th
@@ -420,16 +426,12 @@ table.days tr.anchor td.sl,table.days tr.anchor td.d{color:var(--ink)}
   L.polyline([OKA, TOKYO2], jns).addTo(map);
 
   // Eri: peels off at Hakata on the 17th for two nights in Tokyo, rejoins in Kyoto
-  var HAKATA=[33.59,130.42], eri={color:'#8a6fa8', weight:2, opacity:.85, dashArray:'2,5'};
-  L.polyline([KUMA, HAKATA], eri).addTo(map);
+  var eri={color:'#8a6fa8', weight:2, opacity:.85, dashArray:'2,5'};
   L.polyline([HAKATA, TOKYO2], eri).addTo(map);
   L.polyline([TOKYO2, KANSAI], eri).addTo(map);
-  L.marker(HAKATA, {icon: L.divIcon({className:'', iconSize:[14,14], iconAnchor:[7,7],
-    html:'<div style="background:#8a6fa8;width:14px;height:14px;border-radius:50%;border:2px solid #fff"></div>'})})
-   .addTo(map).bindPopup('<b>Hakata / Fukuoka</b><br>Eri leaves the line here on Oct 17 for Tokyo, and rejoins in Kyoto on the 19th.');
   L.marker(HIRO, {icon: L.divIcon({className:'', iconSize:[16,16], iconAnchor:[8,8],
     html:'<div style="background:#fff;border:2px dashed #9a9a9a;width:16px;height:16px;border-radius:50%"></div>'})})
-   .addTo(map).bindPopup('<b>Hiroshima / Itsukushima</b><br>Optional detour on Oct 17, not everyone.');
+   .addTo(map).bindPopup('<b>Hiroshima / Itsukushima</b><br>The alternative to Fukuoka on Oct 17. One stop fits, not both.');
   map.fitBounds(L.latLngBounds(pts).pad(0.18));
 })();
 </script>
